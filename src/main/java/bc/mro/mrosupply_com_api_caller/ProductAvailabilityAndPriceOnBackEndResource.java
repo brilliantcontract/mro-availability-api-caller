@@ -53,11 +53,11 @@ public class ProductAvailabilityAndPriceOnBackEndResource {
                 + "curl -X POST \\\n"
                 + "     -H \"Content-Type: text/plain\" \\\n"
                 + "     --data-binary @cookies.txt \\\n"
-                + "     https://mroscrape.top:4002/mrosupply-com-api-caller/resources/product-availability-and-price-on-back-end\n\n\n"
+                + "     https://mroscrape.top:4002/mro-availability-api-caller/resources/product-availability-and-price-on-back-end\n\n\n"
                 + "curl -X POST \\\n"
                 + "    -H \"Content-Type: application/x-www-form-urlencoded\" \\\n"
                 + "    --data-binary @cookies.txt \\\n"
-                + "    https://mroscrape.top:4002/mrosupply-com-api-caller/resources/product-availability-and-price-on-front-end-logged-out";
+                + "    https://mroscrape.top:4002/mro-availability-api-caller/resources/product-availability-and-price-on-front-end-logged-out";
     }
 
     @PUT

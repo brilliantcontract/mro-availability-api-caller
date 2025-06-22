@@ -92,7 +92,7 @@
             }
 
             async function checkLoggedInProduct(productId, cookiesText) {
-                const url = "/mrosupply-com-api-caller/resources/product-availability-and-price-on-front-end";
+                const url = "/mro-availability-api-caller/resources/product-availability-and-price-on-front-end";
 
                 const body = new URLSearchParams({
                     productId: productId.toString(),
@@ -135,7 +135,7 @@
             }
 
             async function checkLoggedOutProduct(productId, cookiesText) {
-                const url = "/mrosupply-com-api-caller/resources/product-availability-and-price-on-front-end-logged-out";
+                const url = "/mro-availability-api-caller/resources/product-availability-and-price-on-front-end-logged-out";
 
                 const body = new URLSearchParams({
                     productId: productId.toString(),
@@ -179,7 +179,7 @@
             }
 
             async function checkAdminProduct(productId, cookiesText) {
-                const url = "/mrosupply-com-api-caller/resources/product-availability-and-price-on-back-end";
+                const url = "/mro-availability-api-caller/resources/product-availability-and-price-on-back-end";
 
                 const body = new URLSearchParams({
                     productId: productId.toString(),
