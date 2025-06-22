@@ -7,10 +7,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Cookie;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
+
+import bc.mro.mrosupply_com_api_caller.CookieUtils;
 
 public class ApiCallerFrontEndLoggedOut {
 
@@ -24,7 +23,7 @@ public class ApiCallerFrontEndLoggedOut {
                 .newBuilder()
                 .build();
 
-        Map<String, String> cookies = parseCookies(rawCookies);
+        Map<String, String> cookies = CookieUtils.parseCookies(rawCookies);
 
         // 2. (Optional) supply cookies when the endpoint requires an
         //    authenticated session. Replace the dummy values.
@@ -50,12 +49,9 @@ public class ApiCallerFrontEndLoggedOut {
         cookies.remove("csrftoken");
 
         // -- Build ONE Cookie header instead of many (cleaner, and works with any server):
-        // Do not use cookies as we are simulate not logged in user.
+        // Do not use cookies as we are simulating a not logged in user.
         /*
-        String cookieHeader = cookies.entrySet()
-                .stream()
-                .map(e -> e.getKey() + '=' + e.getValue())
-                .collect(Collectors.joining("; "));
+        String cookieHeader = CookieUtils.buildCookieHeader(cookies);
         req.header("Cookie", cookieHeader);
         */
 
@@ -73,41 +69,4 @@ public class ApiCallerFrontEndLoggedOut {
         return url;
     }
 
-    /**
-     * Accepts a blob of text that looks like:
-     *
-     * __kla_id "eyJjaWQiOiJOak0xTnpJelpXUXRZVFExTUMwME9UZGt..." _clck
-     * "f0qseu|2|fvd|0|1750" ...
-     *
-     * Columns are separated by a single TAB character. Double-quotes around the
-     * value are stripped, blank lines are ignored.
-     *
-     * @param rawCookies the text block copied from the browser/dev-tools
-     * @return a Map<cookieName, cookieValue>
-     */
-    public static Map<String, String> parseCookies(final String rawCookies) {
-        Map<String, String> out = new LinkedHashMap<>();
-
-        Arrays.stream(rawCookies.split("\\R")) // split on any line break
-                .map(String::trim) // trim each line
-                .filter(s -> !s.isEmpty()) // skip blanks
-                .forEach(line -> {
-                    int tab = line.indexOf('\t');
-                    if (tab <= 0) {
-                        return;                // malformed -> ignore
-                    }
-                    String name = line.substring(0, tab).trim();
-                    String value = line.substring(tab + 1).trim();
-
-                    // strip a single pair of leading/trailing quotes
-                    if (value.length() >= 2
-                            && value.startsWith("\"") && value.endsWith("\"")) {
-                        value = value.substring(1, value.length() - 1);
-                    }
-                    out.put(name, value);
-                });
-
-        return out;
-    }
-    
 }
