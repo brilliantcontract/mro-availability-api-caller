@@ -1,5 +1,7 @@
 Project use Java 8. No use of NodeJS or Python.
 
+Use .jar files from `lib` directory as needed dependencies from pom.xml file. Maven central repository could block your requests.
+
 
 
 ### GIT commits format
