@@ -28,17 +28,8 @@
     </pluginRepositories>
     <repositories>
         <repository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>archiva-proxy</id>
-            <url>http://brilliantcontract.net:8082/repository/central</url>
+            <url>http://brilliantcontract.net:8082/repository/public</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
