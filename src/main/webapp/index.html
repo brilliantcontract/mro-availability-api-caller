@@ -56,8 +56,8 @@
                 ssUserId	"be6e14e2-e284-41f6-b2e6-a056076ff9b2"
                 ssViewedProducts	"106111,96678182,96679482,96678799,96677705,96687796,5879515,266424,96651961,5878926,5878925,6496940,272706,96650500,96649725,96648840,96650863,96650815,96650842,96650723"</textarea><br />
 
-            <a href="suppliers-to-check-all.json" target="_blank">JSON for all brands with A&P scripts</a> | <a
-                href="suppliers-to-check-regal.json" target="_blank">JSON for all Regal brands</a>
+            <a href="suppliers-to-check-all.json" id="load-all-brands">JSON for all brands with A&P scripts</a> |
+            <a href="suppliers-to-check-regal.json" id="load-regal-brands">JSON for all Regal brands</a>
 
             <textarea id="productsToCheck" class="form-control" placeholder="Products to check" rows="20">
 [
@@ -127,5 +127,27 @@
         </div>
 
         <script src="js/report.js"></script>
+        <script>
+            function loadJsonIntoTextarea(url) {
+                fetch(url)
+                    .then(function (response) { return response.json(); })
+                    .then(function (data) {
+                        document.getElementById('productsToCheck').value = JSON.stringify(data, null, 2);
+                    })
+                    .catch(function (error) {
+                        alert('Failed to load ' + url + ': ' + error);
+                    });
+            }
+
+            document.getElementById('load-all-brands').addEventListener('click', function (e) {
+                e.preventDefault();
+                loadJsonIntoTextarea('suppliers-to-check-all.json');
+            });
+
+            document.getElementById('load-regal-brands').addEventListener('click', function (e) {
+                e.preventDefault();
+                loadJsonIntoTextarea('suppliers-to-check-regal.json');
+            });
+        </script>
     </body>
 </html>
