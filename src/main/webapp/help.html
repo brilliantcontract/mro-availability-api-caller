@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>MRO Availability API Caller – Help</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                max-width: 42rem;
+                margin: 2rem auto;
+                line-height: 1.5;
+            }
+            pre {
+                background: #f4f4f4;
+                padding: 1rem;
+                overflow-x: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>MRO Availability API Caller</h1>
+        <p>
+            This web application exposes simple endpoints for fetching product
+            availability and price information from <em>mrosupply.com</em>. It is
+            intended for debugging and demonstration purposes. Use
+            <code>index.html</code> for a graphical interface or the REST paths
+            under <code>/resources</code> directly.
+        </p>
+
+        <h2>Queries for Sample Data</h2>
+        <p>
+            The following SQL retrieves the first three visible products for
+            every supplier that has an availability script configured:
+        </p>
+        <pre>
+WITH filtered_suppliers AS (
+  SELECT
+    id,
+    name
+  FROM
+    suppliers_supplier
+  WHERE
+    avail_script IS NOT NULL
+),
+ranked_products AS (
+  SELECT
+    s.name brand,
+    p.product_id,
+    ROW_NUMBER() OVER (
+      PARTITION BY p.brand_id
+      ORDER BY
+        p.product_id
+    ) AS rn
+  FROM
+    products p
+    JOIN filtered_suppliers s ON p.brand_id = s.id
+  WHERE
+    p.is_visible = true
+)
+SELECT
+  brand,
+  product_id
+FROM
+  ranked_products
+WHERE
+  rn &lt;= 3;
+        </pre>
+
+        <p>
+            To get products limited to RegalRexnord associated suppliers, use:
+        </p>
+        <pre>
+WITH filtered_suppliers AS (
+  SELECT
+    id,
+    name
+  FROM
+    suppliers_supplier
+  WHERE
+    avail_script IS NOT NULL
+    AND name IN (
+      'Boston Gear',
+      'Marathon Electric',
+      'Electra/Grove Gear',
+      'TB Woods',
+      'System Plast',
+      'KOP-FLEX',
+      'Regal Cutting Tools',
+      'Warner Electric',
+      'Browning',
+      'Stearns',
+      'SealMaster',
+      'Wichita Clutch',
+      'HubCity',
+      'Regal Rexnord',
+      'Morse',
+      'Thomson Linear',
+      'Rexnord',
+      'Leeson',
+      'HUCO Products',
+      'Formsprag',
+      'Rollway',
+      'McGill Bearing'
+    )
+),
+ranked_products AS (
+  SELECT
+    s.name AS brand,
+    p.product_id,
+    ROW_NUMBER() OVER (
+      PARTITION BY p.brand_id
+      ORDER BY
+        p.product_id
+    ) AS rn
+  FROM
+    products p
+    JOIN filtered_suppliers s ON p.brand_id = s.id
+  WHERE
+    p.is_visible = true
+)
+SELECT
+  brand,
+  product_id
+FROM
+  ranked_products
+WHERE
+  rn &lt;= 3;
+        </pre>
+    </body>
+</html>
