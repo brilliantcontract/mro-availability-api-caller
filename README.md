@@ -20,22 +20,25 @@ The project uses Maven and targets Java 8. Build the WAR with:
 mvn clean package
 ```
 
-Before building you have to enable Maven to work over HTTP and use our private repository instead of Maven central repository.
+Maven central repopository blocks our requests to download artifacts. Thus should be used following HTTPS proxy server to access maven central repository. Modify your Maven ~/.m2/settings.xml file to include the following inside the <proxies> section:
 
     <settings>
-      <mirrors>
-        <mirror>
-          <id>archiva</id>
-          <mirrorOf>*</mirrorOf>
-          <url>http://brilliantcontract.net:8082/repository/public</url>
-        </mirror>
-        <mirror>
-          <id>override-http-blocker</id>
-          <mirrorOf>maven-default-http-blocker</mirrorOf>
-          <url>http://brilliantcontract.net:8082/repository/public</url>
-        </mirror>
-      </mirrors>
+      ...
+      <proxies>
+        <proxy>
+          <id>https-proxy</id>
+          <active>true</active>
+          <protocol>https</protocol>
+          <host>104.251.82.195</host>
+          <port>29842</port>
+          <username>msuppl</username>
+          <password>S0GYgQ8o</password>
+          <nonProxyHosts>localhost|127.0.0.1|brilliantcontract.net</nonProxyHosts>
+        </proxy>
+      </proxies>
+      ...
     </settings>
+
 
 
 ## Usage
