@@ -32,8 +32,8 @@
             <h5>Insert cookies with mrosupply.com session ID</h5>
             <textarea id="cookies" class="form-control" placeholder="Paste cookies here..." rows="3"></textarea><br />
 
-            <a href="suppliers-to-check-all.json" target="_blank">JSON for all brands with A&P scripts</a> | <a
-                href="suppliers-to-check-regal.json" target="_blank">JSON for all Regal brands</a>
+            <a href="suppliers-to-check-all.json" id="load-all-brands">JSON for all brands with A&P scripts</a> |
+            <a href="suppliers-to-check-regal.json" id="load-regal-brands">JSON for all Regal brands</a>
 
             <textarea id="productsToCheck" class="form-control" placeholder="Products to check" rows="20">
 [
@@ -103,6 +103,30 @@
         </div>
 
         <script src="js/report.js"></script>
-    <script>fetch("cookies.txt").then(r=>r.text()).then(t=>{document.getElementById("cookies").value=t.trim();});</script>
-</body>
+
+    	<script>fetch("cookies.txt").then(r=>r.text()).then(t=>{document.getElementById("cookies").value=t.trim();});</script>
+    
+        <script>
+            function loadJsonIntoTextarea(url) {
+                fetch(url)
+                    .then(function (response) { return response.json(); })
+                    .then(function (data) {
+                        document.getElementById('productsToCheck').value = JSON.stringify(data, null, 2);
+                    })
+                    .catch(function (error) {
+                        alert('Failed to load ' + url + ': ' + error);
+                    });
+            }
+
+            document.getElementById('load-all-brands').addEventListener('click', function (e) {
+                e.preventDefault();
+                loadJsonIntoTextarea('suppliers-to-check-all.json');
+            });
+
+            document.getElementById('load-regal-brands').addEventListener('click', function (e) {
+                e.preventDefault();
+                loadJsonIntoTextarea('suppliers-to-check-regal.json');
+            });
+        </script>
+    </body>
 </html>
