@@ -20,8 +20,6 @@ The project uses Maven and targets Java 8. Build the WAR with:
 mvn clean package
 ```
 
-Use https://jitpack.io or https://repo1.maven.org/maven2/ as proxy to Maven central repository. Otherwise use .jar files from `lib` directory as needed dependencies from pom.xml file. Maven central repository could block your requests.
-
 
 ## Usage
 

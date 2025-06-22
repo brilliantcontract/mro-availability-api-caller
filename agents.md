@@ -1,7 +1,5 @@
 Project use Java 8. No use of NodeJS or Python.
 
-Use https://jitpack.io or https://repo1.maven.org/maven2/ as proxy to Maven central repository. Otherwise use .jar files from `lib` directory as needed dependencies from pom.xml file. Maven central repository could block your requests.
-
 
 
 ### GIT commits format
