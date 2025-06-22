@@ -20,6 +20,24 @@ The project uses Maven and targets Java 8. Build the WAR with:
 mvn clean package
 ```
 
+Before building you have to enable Maven to work over HTTP and use our private repository instead of Maven central repository.
+
+    <settings>
+      <mirrors>
+        <mirror>
+          <id>archiva</id>
+          <mirrorOf>*</mirrorOf>
+          <url>http://brilliantcontract.net:8082/repository/public</url>
+        </mirror>
+        <mirror>
+          <id>override-http-blocker</id>
+          <mirrorOf>maven-default-http-blocker</mirrorOf>
+          <url>http://brilliantcontract.net:8082/repository/public</url>
+        </mirror>
+      </mirrors>
+    </settings>
+
+
 ## Usage
 
 Deploy the generated WAR to any Java EE 7 compatible servlet container. The following resources become available:
