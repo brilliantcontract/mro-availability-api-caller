@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Product availability – test client</title>
+        <style>
+            body   { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; }
+            textarea { width: 100%; height: 18rem; font-family: ui-monospace, monospace; }
+            button   { padding: .6rem 1.1rem; font-size: 1rem; }
+        </style>
+    </head>
+    <body>
+        <p>How to use with curl:</p>
+        <pre>
+curl -X POST \
+     -H "Content-Type: text/plain" \
+     --data-binary @cookies.txt \
+     http://localhost:8080/api/product-availability-and-price-on-front-end
+        </pre>
+
+        <br><hr/><br>
+
+        <p>Product example to copy the HTTP Cookies from <a href="https://www.mrosupply.com/-/106111" target="_blank">Open product</a></p>
+
+        <p>Look for call API <code>https://www.mrosupply.com/api/v2/product/106111/availability/</code> you should copy Cookies from there and put it in below textarea field.</p>
+
+        <br><hr/><br>
+
+        <!--
+     *  action  – replace with your deployed URL if it’s not localhost
+     *  target  – “_blank” makes the response open in a new tab
+     *  enctype – “text/plain” so the body is sent literally,
+     *            not as application/x-www-form-urlencoded
+        -->
+        <form method="post"
+              action="/mrosupply_com_api_caller/resources/product-availability-and-price-on-front-end"
+              target="_blank">
+
+            <label>
+                Product&nbsp;ID:
+                <input type="text" name="productId" required pattern="\d+">
+                (products IDs for testing: <code>106111</code>, <code>6500502</code>)
+            </label>
+
+            <br><br>
+
+            <textarea name="cookies" placeholder="__kla_id  &quot;...&quot;"></textarea>
+
+            <p>
+                <button type="submit">Send &rarr;</button>
+            </p>
+        </form>
+
+        <!-- Optional UX sugar: put cursor in the textarea on page load -->
+        <script>
+            document.querySelector('input').focus();
+        </script>
+    </body>
+</html>
