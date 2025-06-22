@@ -30,7 +30,7 @@
             <dependency>
                 <groupId>org.glassfish.jersey</groupId>
                 <artifactId>jersey-bom</artifactId>
-                <version>2.27</version>
+                <version>2.29.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -38,12 +38,6 @@
     </dependencyManagement>
     
     <dependencies>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.11</version>
-        </dependency>
-
         <!-- Begin REST. -->
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>
