@@ -36,8 +36,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-    </repositories>
-    <repositories>
         <repository>
             <id>archiva-proxy</id>
             <url>http://brilliantcontract.net:8082/repository/central</url>
