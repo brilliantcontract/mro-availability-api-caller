@@ -1,3 +1,15 @@
+            function safeTitle(data) {
+                if (!data) return "No data";
+                return JSON.stringify(data).replace(/"/g, "'");
+            }
+
+            function makeCell(id, result) {
+                const qtyBadge = (result.status === 'Success' && result.data && typeof result.data.total_qty_available !== 'undefined')
+                        ? `<span class="badge badge-pill badge-info ml-1">${result.data.total_qty_available}</span>`
+                        : '';
+                return `<a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${result.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result.status}</span>${qtyBadge}</a>`;
+            }
+
             async function generateReport() {
                 $("#report-generation-form").addClass("d-none");
                 $("#generated-report").removeClass("d-none");
@@ -241,51 +253,18 @@
                 const resultsBody = document.getElementById("results-body");
                 resultsTable.classList.remove("d-none");
 
-                const safeTitle = (data) => {
-                    if (!data)
-                        return "No data";
-                    return JSON.stringify(data).replace(/"/g, "'");
-                };
-
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
             <td>${supplier}</td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id1}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result1.data)}"><span class="${result1.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result1.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id2}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result2.data)}"><span class="${result2.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result2.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id3}" target="_blank" data-toggle="tooltip" data-placement="top"
-                 title="${safeTitle(result3.data)}"><span class="${result3.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result3.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id1}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result4.data)}"><span class="${result4.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result4.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id2}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result5.data)}"><span class="${result5.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result5.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id3}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result6.data)}"><span class="${result6.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result6.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id1}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result7.data)}"><span class="${result7.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result7.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id2}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result8.data)}"><span class="${result8.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result8.status}</span></a>
-            </td>
-            <td>
-              <a href="https://www.mrosupply.com/-/${id3}" target="_blank" data-toggle="tooltip" data-placement="top" 
-                 title="${safeTitle(result9.data)}"><span class="${result9.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result9.status}</span></a>
-            </td>
+            <td>${makeCell(id1, result1)}</td>
+            <td>${makeCell(id2, result2)}</td>
+            <td>${makeCell(id3, result3)}</td>
+            <td>${makeCell(id1, result4)}</td>
+            <td>${makeCell(id2, result5)}</td>
+            <td>${makeCell(id3, result6)}</td>
+            <td>${makeCell(id1, result7)}</td>
+            <td>${makeCell(id2, result8)}</td>
+            <td>${makeCell(id3, result9)}</td>
           `;
                 resultsBody.appendChild(tr);
             }
@@ -353,17 +332,12 @@ function displayLoggedInResult({ supplier, products, results }) {
     const resultsBody = document.getElementById("results-body");
     resultsTable.classList.remove("d-none");
 
-    const safeTitle = (data) => {
-        if (!data) return "No data";
-        return JSON.stringify(data).replace(/"/g, "'");
-    };
-
     const tr = document.createElement("tr");
     let cells = "";
     for (let i = 0; i < products.length; i++) {
         const id = products[i];
         const result = results[i];
-        cells += `<td><a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${result.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result.status}</span></a></td>`;
+        cells += `<td>${makeCell(id, result)}</td>`;
     }
     tr.innerHTML = `<td>${supplier}</td>` + cells;
     resultsBody.appendChild(tr);
