@@ -2,26 +2,12 @@ Project use Java 8. No use of NodeJS or Python.
 
 
 
-### Codex proxy servire for Maven
+### Tests
 
-Maven should use Codex proxy server in order to access central repository:
-
-   <mirrors>
-     <mirror>
-       <id>central-mirror</id>
-       <mirrorOf>central</mirrorOf>
-       <url>https://repo1.maven.org/maven2/</url>
-     </mirror>
-   </mirrors>
-   <proxies>
-     <proxy>
-       <id>proxy</id>
-       <active>true</active>
-       <protocol>http</protocol>
-       <host>proxy</host>
-       <port>8080</port>
-     </proxy>
-   </proxies>
+Rules for testing:
+- All features should have a unit test or tests.
+- Should be used JUnit with matchers from Hamcrest library.
+- Should be used Mockito library when needed.
 
 
 
