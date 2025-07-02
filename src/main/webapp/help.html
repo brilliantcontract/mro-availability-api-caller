@@ -149,5 +149,420 @@ FROM
 WHERE
   rn &lt;= 3;
         </pre>
+        
+        
+
+        <p>
+            To get products limited to RegalRexnord associated suppliers. Extract bestseller products, use:
+        </p>
+        <pre>
+WITH ranked_products AS (
+  SELECT
+    s.name AS supplier,
+    p.id AS product_id,
+    SUM(oi.qty) AS total_qty,
+    ROW_NUMBER() OVER (PARTITION BY s.name ORDER BY SUM(oi.qty) DESC) AS rank
+  FROM orders_item oi
+  JOIN products_product p ON oi.product_id = p.id
+  JOIN suppliers_supplier s ON p.supplier_id = s.id
+  WHERE p.is_visible = TRUE
+    AND s.name IN (
+      'Boston Gear', 'HubCity', 'Leeson', 'Warner Electric',
+      'Formsprag', 'TB Woods', 'Rexnord', 'SealMaster',
+      'McGill Bearing', 'Marathon Electric', 'Browning',
+      'System Plast', 'Rollway', 'Morse'
+    )
+  GROUP BY s.name, p.id
+)
+SELECT supplier, product_id, total_qty
+FROM ranked_products
+WHERE rank <= 10
+ORDER BY supplier, rank;
+        </pre>
+
+
+        <h1>Database structure for ChatGPT to help build new SQL queries</h1>
+
+        <p>Database is PostgreSQL</p>
+
+        <p>Table "orders_order" has following fields:</p>
+        <ul>
+            <li>alternative_recommended: boolean</li>
+            <li>assigned_processor_id: integer</li>
+            <li>assigned_to_id: integer</li>
+            <li>authnet_accept_payment_nonce: character varying</li>
+            <li>authnet_payment_profile_id: character varying</li>
+            <li>authnet_trans_id: character varying</li>
+            <li>avail_requested_at: timestamp with time zone</li>
+            <li>avalara_customer_id: character varying</li>
+            <li>billing_address_1: character varying</li>
+            <li>billing_address_2: character varying</li>
+            <li>billing_city: character varying</li>
+            <li>billing_company_name: character varying</li>
+            <li>billing_country: character varying</li>
+            <li>billing_email: character varying</li>
+            <li>billing_first_name: character varying</li>
+            <li>billing_last_name: character varying</li>
+            <li>billing_phone: character varying</li>
+            <li>billing_postal_code: character varying</li>
+            <li>billing_state: character varying</li>
+            <li>braintree_nonce: character varying</li>
+            <li>cancelled_at: timestamp with time zone</li>
+            <li>charge_id: character varying</li>
+            <li>charged_at: timestamp with time zone</li>
+            <li>company_name: character varying</li>
+            <li>completed_at: timestamp with time zone</li>
+            <li>consignee_address_1: character varying</li>
+            <li>consignee_address_2: character varying</li>
+            <li>consignee_city: character varying</li>
+            <li>consignee_company_name: character varying</li>
+            <li>consignee_country: character varying</li>
+            <li>consignee_email: character varying</li>
+            <li>consignee_first_name: character varying</li>
+            <li>consignee_last_name: character varying</li>
+            <li>consignee_phone: character varying</li>
+            <li>consignee_postal_code: character varying</li>
+            <li>consignee_state: character varying</li>
+            <li>coupon_id: integer</li>
+            <li>created_at: timestamp with time zone</li>
+            <li>created_by_id: integer</li>
+            <li>customer_id: integer</li>
+            <li>customer_po: character varying</li>
+            <li>cybersource_token: character varying</li>
+            <li>discount: numeric</li>
+            <li>eclipse_order_id: character varying</li>
+            <li>eclipse_shipping_customer_id: integer</li>
+            <li>eclipse_status: ARRAY</li>
+            <li>emails: text</li>
+            <li>expedite_fee: numeric</li>
+            <li>first_name: character varying</li>
+            <li>grand_total: numeric</li>
+            <li>invoice: character varying</li>
+            <li>is_international: boolean</li>
+            <li>is_paid: boolean</li>
+            <li>kount_fraud_score: integer</li>
+            <li>kount_omniscore: numeric</li>
+            <li>last_name: character varying</li>
+            <li>netsuite_id: integer</li>
+            <li>order_id: character varying</li>
+            <li>payment_applied: boolean</li>
+            <li>payment_fee: numeric</li>
+            <li>payment_method: smallint</li>
+            <li>paypal_memo: character varying</li>
+            <li>paypal_payer_email: character varying</li>
+            <li>paypal_payment_status: character varying</li>
+            <li>paypal_tx: character varying</li>
+            <li>phones: text</li>
+            <li>place_order_status: smallint</li>
+            <li>priority: smallint</li>
+            <li>processed_at: timestamp with time zone</li>
+            <li>processed_by_id: integer</li>
+            <li>processed_in_eclipse: boolean</li>
+            <li>quote_team_review: boolean</li>
+            <li>reseller_cert_id: character varying</li>
+            <li>review_needed: boolean</li>
+            <li>safe_to_automate: boolean</li>
+            <li>shipping_address_1: character varying</li>
+            <li>shipping_address_2: character varying</li>
+            <li>shipping_city: character varying</li>
+            <li>shipping_company_name: character varying</li>
+            <li>shipping_country: character varying</li>
+            <li>shipping_email: character varying</li>
+            <li>shipping_first_name: character varying</li>
+            <li>shipping_last_name: character varying</li>
+            <li>shipping_phone: character varying</li>
+            <li>shipping_postal_code: character varying</li>
+            <li>shipping_state: character varying</li>
+            <li>shipping_total: numeric</li>
+            <li>source: smallint</li>
+            <li>status: smallint</li>
+            <li>tax_total: numeric</li>
+            <li>updated_at: timestamp with time zone</li>
+            <li>updated_by_id: integer</li>
+        </ul>
+
+        <p>Table "suppliers_supplier" has following fields:</p>
+        <ul>
+            <li>account_number: character varying</li>
+            <li>accounting_email: character varying</li>
+            <li>accounting_name: character varying</li>
+            <li>accounting_phone: character varying</li>
+            <li>allow_automation: boolean</li>
+            <li>allow_product_change: boolean</li>
+            <li>annual_returns_info: text</li>
+            <li>ar_email: ARRAY</li>
+            <li>avail_script: smallint</li>
+            <li>can_provide: ARRAY</li>
+            <li>can_ship_fedex: boolean</li>
+            <li>can_ship_ups: boolean</li>
+            <li>cant_open_links: boolean</li>
+            <li>category_id: integer</li>
+            <li>change_interval: smallint</li>
+            <li>change_months: ARRAY</li>
+            <li>closing_at: time without time zone</li>
+            <li>company_id: integer</li>
+            <li>confirmation_email: ARRAY</li>
+            <li>confirmation_method: smallint</li>
+            <li>confirmation_script: smallint</li>
+            <li>contact_name: character varying</li>
+            <li>country_of_manufacture: character varying</li>
+            <li>create_availability_request: boolean</li>
+            <li>created: timestamp with time zone</li>
+            <li>credit_memo_contact: character varying</li>
+            <li>cs_email: character varying</li>
+            <li>cs_name: character varying</li>
+            <li>cs_phone: character varying</li>
+            <li>cs_timezone: character varying</li>
+            <li>data_contact_email: character varying</li>
+            <li>data_contact_name: character varying</li>
+            <li>data_contact_phone: character varying</li>
+            <li>deadline_at: time without time zone</li>
+            <li>difficulty: smallint</li>
+            <li>display_customer_info: boolean</li>
+            <li>drop_ship: boolean</li>
+            <li>drop_ship_notes: text</li>
+            <li>early_pay: boolean</li>
+            <li>early_payment_discount: smallint</li>
+            <li>eclipse_billto_id: character varying</li>
+            <li>eclipse_billto_name: character varying</li>
+            <li>email_address: character varying</li>
+            <li>estimated_parts: character varying</li>
+            <li>external_html: text</li>
+            <li>external_id: character varying</li>
+            <li>free_ship: boolean</li>
+            <li>free_ship_for_dropship: boolean</li>
+            <li>free_ship_over: numeric</li>
+            <li>free_ship_units: smallint</li>
+            <li>freight_allowed_over: numeric</li>
+            <li>freight_allowed_uom: smallint</li>
+            <li>freight_notes: text</li>
+            <li>has_api: boolean</li>
+            <li>id: integer</li>
+            <li>internal_return_notes: text</li>
+            <li>invoice_email: ARRAY</li>
+            <li>is_on_credit_hold: boolean</li>
+            <li>it_contact: character varying</li>
+            <li>logo: character varying</li>
+            <li>make_pa_tickets: boolean</li>
+            <li>make_price_tickets: boolean</li>
+            <li>map_policy: boolean</li>
+            <li>marketing_contact: character varying</li>
+            <li>meta_description: character varying</li>
+            <li>min_discount_amount: numeric</li>
+            <li>min_review_amount: numeric</li>
+            <li>minimum_order: numeric</li>
+            <li>minimum_order_note: character varying</li>
+            <li>minimum_order_set_by: smallint</li>
+            <li>modified: timestamp with time zone</li>
+            <li>most_reliable_contact: character varying</li>
+            <li>name: character varying</li>
+            <li>needs_geolocation: boolean</li>
+            <li>net_terms_length: smallint</li>
+            <li>notes: text</li>
+            <li>onboard_email_status: smallint</li>
+            <li>onboard_method: smallint</li>
+            <li>online_ordering: boolean</li>
+            <li>online_stock_check: boolean</li>
+            <li>online_tracking: boolean</li>
+            <li>open_quote_email: character varying</li>
+            <li>opening_at: time without time zone</li>
+            <li>order_email: ARRAY</li>
+            <li>order_method: smallint</li>
+            <li>pa_email: ARRAY</li>
+            <li>pa_method: smallint</li>
+            <li>payment_method: smallint</li>
+            <li>place_order_script: smallint</li>
+            <li>preferred_freight_shipping_id: integer</li>
+            <li>preferred_parcel_shipping_id: integer</li>
+            <li>price_current_date: date</li>
+            <li>price_tickets_threshold: smallint</li>
+            <li>price_valid_until: date</li>
+            <li>prod_info_email: character varying</li>
+            <li>prod_info_name: character varying</li>
+            <li>prod_info_phone: character varying</li>
+            <li>product_footer: text</li>
+            <li>provides_data: boolean</li>
+            <li>quote_note: text</li>
+            <li>quote_team_review: boolean</li>
+            <li>realtime_avail_script: smallint</li>
+            <li>remit_to_address: character varying</li>
+            <li>remit_to_city: character varying</li>
+            <li>remit_to_country_id: integer</li>
+            <li>remit_to_postal_code: character varying</li>
+            <li>remit_to_state_id: integer</li>
+            <li>representative_id: integer</li>
+            <li>restocking_fee: numeric</li>
+            <li>return_email: ARRAY</li>
+            <li>return_policy_notes: text</li>
+            <li>return_questions: text</li>
+            <li>sales_rep_email: character varying</li>
+            <li>sales_rep_name: character varying</li>
+            <li>sales_rep_phone: character varying</li>
+            <li>send_availability_request: boolean</li>
+            <li>send_price_file_request: boolean</li>
+            <li>send_tracking_request: boolean</li>
+            <li>shipping_note: text</li>
+            <li>show_in_pending: boolean</li>
+            <li>show_tech_support_phone: boolean</li>
+            <li>slug: character varying</li>
+            <li>small_weights: boolean</li>
+            <li>stale_scrape_hours: smallint</li>
+            <li>status: smallint</li>
+            <li>status_note: character varying</li>
+            <li>supplier_type: smallint</li>
+            <li>surcharge: numeric</li>
+            <li>tech_support_number: character varying</li>
+            <li>tracking_email: ARRAY</li>
+            <li>tracking_method: smallint</li>
+            <li>tracking_script: smallint</li>
+            <li>trusted_lead_time: boolean</li>
+            <li>vendor_reviewed_for_obsolete: boolean</li>
+            <li>visible_in_callcenter: boolean</li>
+            <li>waiting_on: smallint</li>
+            <li>warranty_information: text</li>
+            <li>website: character varying</li>
+            <li>website_password: character varying</li>
+            <li>website_username: character varying</li>
+            <li>wiki_article_id: integer</li>
+        </ul>
+
+        <p>Table "products_product" has following fields:</p>
+        <p>Field "is_visible" should be always checked to be "True" so we don't use deleted products.</p>
+        <ul>
+            <li>additional_description: text</li>
+            <li>addon_display_above_cart_value: numeric</li>
+            <li>addon_is_addon: boolean</li>
+            <li>addon_is_always_displayed: boolean</li>
+            <li>alternative_catalog_number: character varying</li>
+            <li>availability_count: integer</li>
+            <li>avalara_tax_code: character varying</li>
+            <li>brand_id: integer</li>
+            <li>buy_qty: integer</li>
+            <li>ca_prop_warning: boolean</li>
+            <li>call_for_pricing: boolean</li>
+            <li>can_make_offer: boolean</li>
+            <li>canonical_url: character varying</li>
+            <li>catalog_number: character varying</li>
+            <li>category_id: integer</li>
+            <li>competitors_count: integer</li>
+            <li>condition: smallint</li>
+            <li>cost: numeric</li>
+            <li>created_at: timestamp with time zone</li>
+            <li>current_rank: integer</li>
+            <li>current_rank_is_lowest: boolean</li>
+            <li>default_shipping_location: character varying</li>
+            <li>description: character varying</li>
+            <li>detail_attributes: USER-DEFINED</li>
+            <li>eclipse_id: integer</li>
+            <li>force_obsolete: boolean</li>
+            <li>fraud_risk: boolean</li>
+            <li>freight_class: character varying</li>
+            <li>ga_attributes: USER-DEFINED</li>
+            <li>gather_xref: boolean</li>
+            <li>google_promotion_id: character varying</li>
+            <li>googlebot_last_checked_at: timestamp with time zone</li>
+            <li>googlebot_total_visits: integer</li>
+            <li>gtin: character varying</li>
+            <li>hard_price: numeric</li>
+            <li>harmonized_tax_code: character varying</li>
+            <li>hide_image_column: boolean</li>
+            <li>id: integer</li>
+            <li>ignore_eclipse_stock: boolean</li>
+            <li>is_excluded_from_google_feed: boolean</li>
+            <li>is_excluded_from_octopart_feed: boolean</li>
+            <li>is_excluded_from_sitemap: boolean</li>
+            <li>is_obsolete: boolean</li>
+            <li>is_on_first_page: boolean</li>
+            <li>is_ranked: boolean</li>
+            <li>is_unavailable: boolean</li>
+            <li>is_visible: boolean</li>
+            <li>keywords: text</li>
+            <li>last_avail_scraped_at: timestamp with time zone</li>
+            <li>list_attributes: USER-DEFINED</li>
+            <li>list_price: numeric</li>
+            <li>lowest_price: numeric</li>
+            <li>lowest_price_competitor_id: integer</li>
+            <li>lowest_price_scraped_at: timestamp with time zone</li>
+            <li>lowest_rank: integer</li>
+            <li>made_to_order: boolean</li>
+            <li>main_image: character varying</li>
+            <li>major_repair_price: numeric</li>
+            <li>meta_description: character varying</li>
+            <li>mfg_discount_group: character varying</li>
+            <li>mfg_sell_group: character varying</li>
+            <li>min_adv_price: numeric</li>
+            <li>minimum_order_qty: integer</li>
+            <li>minor_repair_price: numeric</li>
+            <li>needs_index_check: boolean</li>
+            <li>needs_rank_check: boolean</li>
+            <li>netsuite_id: integer</li>
+            <li>no_index: boolean</li>
+            <li>notes: text</li>
+            <li>obsolete_changed_at: timestamp with time zone</li>
+            <li>pla: boolean</li>
+            <li>popularity: integer</li>
+            <li>popularity_carts: integer</li>
+            <li>popularity_purchases: integer</li>
+            <li>popularity_views: integer</li>
+            <li>price_is_lowest: boolean</li>
+            <li>promo_display_above_cart_value: numeric</li>
+            <li>promo_is_promo: boolean</li>
+            <li>quote_team_review: boolean</li>
+            <li>rank_checked_at: timestamp with time zone</li>
+            <li>redirect: smallint</li>
+            <li>repair_time_estimate: integer</li>
+            <li>repairable: boolean</li>
+            <li>replacement_info: text</li>
+            <li>replacement_product_id: integer</li>
+            <li>returnable: boolean</li>
+            <li>rich_description: text</li>
+            <li>scraped_price: numeric</li>
+            <li>serp_competitors_count: integer</li>
+            <li>ship_qty: integer</li>
+            <li>ship_time: integer</li>
+            <li>ship_weight: numeric</li>
+            <li>show_higher_price: boolean</li>
+            <li>suggested_interchange_id: integer</li>
+            <li>suggested_interchange_text: character varying</li>
+            <li>supplier_id: integer</li>
+            <li>tagged_image: character varying</li>
+            <li>title: character varying</li>
+            <li>typically_instock: boolean</li>
+            <li>uom: character varying</li>
+            <li>upc_number: character varying</li>
+            <li>update_list_cost: boolean</li>
+            <li>updated_at: timestamp with time zone</li>
+            <li>warranty_information: text</li>
+            <li>warranty_period: integer</li>
+            <li>warranty_unit: smallint</li>
+            <li>weight: numeric</li>
+        </ul>
+
+        <p>Table "orders_item" has following fields:</p>
+        <ul>
+            <li>additional_amount: numeric</li>
+            <li>brand_id: integer</li>
+            <li>cost: numeric</li>
+            <li>customer_note: character varying</li>
+            <li>description: text</li>
+            <li>discount: numeric</li>
+            <li>ext_price: numeric</li>
+            <li>id: integer</li>
+            <li>internal_note: character varying</li>
+            <li>is_in_local_stock: smallint</li>
+            <li>is_in_stock: smallint</li>
+            <li>item_group_id: integer</li>
+            <li>last_checked: timestamp with time zone</li>
+            <li>netsuite_id: integer</li>
+            <li>order_id: character varying</li>
+            <li>price: numeric</li>
+            <li>price_penalty: numeric</li>
+            <li>product_id: integer</li>
+            <li>qty: bigint</li>
+            <li>real_cost: numeric</li>
+            <li>status: smallint</li>
+            <li>supplier_comment: text</li>
+            <li>supplier_id: integer</li>
+        </ul>
     </body>
 </html>
