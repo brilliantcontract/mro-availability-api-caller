@@ -24,220 +24,7 @@
             <h5>Insert cookies with mrosupply.com session ID</h5>
             <textarea id="cookies" class="form-control" placeholder="Paste cookies here..." rows="3"></textarea><br />
             <a href="regal-suppliers-10-products.json" target="_blank">JSON for Regal brands (10 products)</a>
-            <textarea id="productsToCheck" class="form-control" placeholder="Products to check" rows="20">
-            [
-              {
-                "supplier": "Boston Gear",
-                "products": [
-                  28943,
-                  28944,
-                  28945,
-                  28946,
-                  28947,
-                  28948,
-                  28949,
-                  28950,
-                  28951,
-                  28952
-                ]
-              },
-              {
-                "supplier": "HubCity",
-                "products": [
-                  184420,
-                  184421,
-                  184422,
-                  184423,
-                  184424,
-                  184425,
-                  184426,
-                  184427,
-                  184428,
-                  184429
-                ]
-              },
-              {
-                "supplier": "Leeson",
-                "products": [
-                  82,
-                  220847,
-                  220848,
-                  220864,
-                  221391,
-                  221414,
-                  221415,
-                  221422,
-                  221423,
-                  221424
-                ]
-              },
-              {
-                "supplier": "Warner Electric",
-                "products": [
-                  90,
-                  31935,
-                  398376,
-                  398468,
-                  398490,
-                  398567,
-                  398674,
-                  398714,
-                  398877,
-                  398895
-                ]
-              },
-              {
-                "supplier": "Formsprag",
-                "products": [
-                  398265,
-                  398311,
-                  398345,
-                  398437,
-                  398454,
-                  398529,
-                  398568,
-                  398570,
-                  398585,
-                  398586
-                ]
-              },
-              {
-                "supplier": "TB Woods",
-                "products": [
-                  30760,
-                  30765,
-                  30766,
-                  30767,
-                  30769,
-                  30770,
-                  30771,
-                  30772,
-                  336158,
-                  336159
-                ]
-              },
-              {
-                "supplier": "Rexnord",
-                "products": [
-                  59,
-                  75,
-                  463398,
-                  463399,
-                  463400,
-                  463401,
-                  463402,
-                  463403,
-                  463404,
-                  463405
-                ]
-              },
-              {
-                "supplier": "SealMaster",
-                "products": [
-                  416305,
-                  416317,
-                  416327,
-                  417886,
-                  418140,
-                  418143,
-                  418153,
-                  418172,
-                  418295,
-                  418327
-                ]
-              },
-              {
-                "supplier": "McGill Bearing",
-                "products": [
-                  458662,
-                  459038,
-                  459059,
-                  459634,
-                  459884,
-                  460081,
-                  460083,
-                  460129,
-                  460254,
-                  460264
-                ]
-              },
-              {
-                "supplier": "Marathon Electric",
-                "products": [
-                  223522,
-                  225171,
-                  227278,
-                  1802684,
-                  2267459,
-                  2267463,
-                  2267464,
-                  2267465,
-                  2267477,
-                  2267481
-                ]
-              },
-              {
-                "supplier": "Browning",
-                "products": [
-                  197886,
-                  411637,
-                  411839,
-                  445206,
-                  445316,
-                  445385,
-                  445388,
-                  445458,
-                  445566,
-                  446192
-                ]
-              },
-              {
-                "supplier": "System Plast",
-                "products": [
-                  330584,
-                  330657,
-                  330697,
-                  332465,
-                  333977,
-                  334293,
-                  334414,
-                  334629,
-                  334631,
-                  334873
-                ]
-              },
-              {
-                "supplier": "Rollway",
-                "products": [
-                  453932,
-                  2300083,
-                  2300084,
-                  2300085,
-                  2300089,
-                  2300090,
-                  2300091,
-                  2300093,
-                  2300095,
-                  2300097
-                ]
-              },
-              {
-                "supplier": "Morse",
-                "products": [
-                  414000,
-                  414043,
-                  414048,
-                  416245,
-                  416407,
-                  416410,
-                  416412,
-                  416423,
-                  416430,
-                  416432
-                ]
-              }
-            ]
-            </textarea><br />
+            <textarea id="productsToCheck" class="form-control" placeholder="Products to check" rows="20"></textarea><br />
             <button class="btn btn-secondary btn-sm" onclick="generateRegalReport()">Generate report</button>
         </div>
 
@@ -268,6 +55,15 @@
         </div>
 
         <script src="js/report.js"></script>
-    <script>fetch("cookies.txt").then(r=>r.text()).then(t=>{document.getElementById("cookies").value=t.trim();});</script>
+    <script>
+        fetch("cookies.txt")
+            .then(r => r.text())
+            .then(t => { document.getElementById("cookies").value = t.trim(); });
+        fetch("regal-suppliers-10-products.json")
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById("productsToCheck").value = JSON.stringify(d, null, 2);
+            });
+    </script>
 </body>
 </html>
