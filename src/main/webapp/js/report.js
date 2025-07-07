@@ -40,6 +40,20 @@
                     return;
                 }
 
+                const implementedOnly = document.getElementById("implementedOnly").checked;
+                if (implementedOnly) {
+                    try {
+                        const response = await fetch("http://mroscrape.top:4003/list-scripts");
+                        const data = await response.json();
+                        if (data && Array.isArray(data.scripts)) {
+                            const active = new Set(data.scripts.filter(s => s.isActive).map(s => s.name));
+                            listings = listings.filter(l => active.has(l.supplier));
+                        }
+                    } catch (err) {
+                        console.warn("Failed to fetch implemented scripts", err);
+                    }
+                }
+
                 /* ---------- 3. prepare UI ---------- */
                 const processingDiv = document.getElementById("processing");
                 const doneCounter = document.getElementById("done");
