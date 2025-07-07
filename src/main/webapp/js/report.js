@@ -10,6 +10,8 @@
                 return `<a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${result.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result.status}</span>${qtyBadge}</a>`;
             }
 
+            const CONCURRENCY = 4; // how many suppliers are processed in parallel
+
             async function generateReport() {
                 $("#report-generation-form").addClass("d-none");
                 $("#generated-report").removeClass("d-none");
@@ -51,30 +53,25 @@
                 resultsTable.classList.add("d-none");   // hidden until we have rows
                 processingDiv.classList.remove("d-none");
 
-                /* ---------- 4. run checks ---------- */
+                /* ---------- 4. run checks with limited concurrency ---------- */
                 let counter = 0;
-                for (const listing of listings) {
+
+                async function processListing(listing) {
                     counter++;
                     doneCounter.innerText = counter;
 
                     const {supplier, id1, id2, id3} = listing;
 
                     const result1 = await checkLoggedInProduct(id1, cookiesText);
-
                     const result2 = await checkLoggedInProduct(id2, cookiesText);
-
                     const result3 = await checkLoggedInProduct(id3, cookiesText);
 
                     const result4 = await checkLoggedOutProduct(id1, cookiesText);
-
                     const result5 = await checkLoggedOutProduct(id2, cookiesText);
-
                     const result6 = await checkLoggedOutProduct(id3, cookiesText);
 
                     const result7 = await checkAdminProduct(id1, cookiesText);
-
                     const result8 = await checkAdminProduct(id2, cookiesText);
-
                     const result9 = await checkAdminProduct(id3, cookiesText);
 
                     displayResult({
@@ -95,7 +92,13 @@
 
                     $(function () {
                         $('[data-toggle="tooltip"]').tooltip({container: 'body'});
-                    })
+                    });
+                }
+
+                for (let i = 0; i < listings.length; i += CONCURRENCY) {
+                    const slice = listings.slice(i, i + CONCURRENCY);
+                    const promises = slice.map(l => processListing(l));
+                    await Promise.all(promises);
                 }
 
                 /* ---------- 5. finish ---------- */
@@ -307,7 +310,8 @@ async function generateRegalReport() {
     processingDiv.classList.remove("d-none");
 
     let counter = 0;
-    for (const listing of listings) {
+
+    async function processRegalListing(listing) {
         counter++;
         doneCounter.innerText = counter;
 
@@ -322,6 +326,12 @@ async function generateRegalReport() {
         $(function () {
             $('[data-toggle="tooltip"]').tooltip({ container: 'body' });
         });
+    }
+
+    for (let i = 0; i < listings.length; i += CONCURRENCY) {
+        const slice = listings.slice(i, i + CONCURRENCY);
+        const promises = slice.map(l => processRegalListing(l));
+        await Promise.all(promises);
     }
 
     processingDiv.classList.add("d-none");
