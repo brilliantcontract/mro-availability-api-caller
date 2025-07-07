@@ -75,6 +75,7 @@
                     doneCounter.innerText = counter;
 
                     const {supplier, id1, id2, id3} = listing;
+                    const supplierSlug = supplier.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
                     const result1 = await checkLoggedInProduct(id1, cookiesText);
                     const result2 = await checkLoggedInProduct(id2, cookiesText);
@@ -87,6 +88,10 @@
                     const result7 = await checkAdminProduct(id1, cookiesText);
                     const result8 = await checkAdminProduct(id2, cookiesText);
                     const result9 = await checkAdminProduct(id3, cookiesText);
+
+                    const result10 = await checkAopProduct(supplierSlug, id1);
+                    const result11 = await checkAopProduct(supplierSlug, id2);
+                    const result12 = await checkAopProduct(supplierSlug, id3);
 
                     displayResult({
                         supplier,
@@ -101,7 +106,10 @@
                         result6,
                         result7,
                         result8,
-                        result9
+                        result9,
+                        result10,
+                        result11,
+                        result12
                     });
 
                     $(function () {
@@ -250,6 +258,22 @@
                 return {status: "Unsuccessful", data: null};
             }
 
+            async function checkAopProduct(supplierSlug, catalogNumber) {
+                const url = `http://mroscrape.top:4003/scrapers/${supplierSlug}/availability?token=mro-high-secret&catalog_number=${encodeURIComponent(catalogNumber)}`;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error("HTTP error " + response.status);
+                    }
+                    const data = await response.json();
+                    return {status: "Success", data};
+                } catch (err) {
+                    console.warn("AOP request failed", err);
+                    return {status: "Unsuccessful", data: null};
+                }
+            }
+
 
             function displayResult( {
             supplier,
@@ -264,7 +288,10 @@
                     result6,
                     result7,
                     result8,
-                    result9
+                    result9,
+                    result10,
+                    result11,
+                    result12
             }) {
                 const resultsTable = document.getElementById("results");
                 const resultsBody = document.getElementById("results-body");
@@ -282,6 +309,9 @@
             <td>${makeCell(id1, result7)}</td>
             <td>${makeCell(id2, result8)}</td>
             <td>${makeCell(id3, result9)}</td>
+            <td>${makeCell(id1, result10)}</td>
+            <td>${makeCell(id2, result11)}</td>
+            <td>${makeCell(id3, result12)}</td>
           `;
                 resultsBody.appendChild(tr);
             }
