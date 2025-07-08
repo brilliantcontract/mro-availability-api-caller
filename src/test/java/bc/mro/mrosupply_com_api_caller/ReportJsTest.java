@@ -11,6 +11,14 @@ public class ReportJsTest {
     @Test
     public void qtyBadgeUsesSecondaryWhenZero() throws Exception {
         String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
-        assertThat(js, containsString("? 'badge-success' : 'badge-secondary'"));
+        assertThat(js, containsString("? 'badge-info' : 'badge-secondary'"));
+        assertThat(js, containsString("result.data && typeof result.data.total_qty_available !== 'undefined'"));
+    }
+
+    @Test
+    public void aopFailureHandledAsFail() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("data.result.success === false"));
+        assertThat(js, containsString("return {status: \"Fail\""));
     }
 }
