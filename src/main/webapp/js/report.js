@@ -5,7 +5,7 @@
 
             function makeCell(id, result) {
                 const qtyBadge = (result.status === 'Success' && result.data && typeof result.data.total_qty_available !== 'undefined')
-                        ? `<span class="badge badge-pill ${result.data.total_qty_available > 0 ? 'badge-success' : 'badge-secondary'} ml-1">${result.data.total_qty_available}</span>`
+                        ? `<span class="badge badge-pill ${result.data.total_qty_available > 0 ? 'badge-info' : 'badge-secondary'} ml-1">${result.data.total_qty_available}</span>`
                         : '';
                 return `<a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${result.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result.status}</span>${qtyBadge}</a>`;
             }
