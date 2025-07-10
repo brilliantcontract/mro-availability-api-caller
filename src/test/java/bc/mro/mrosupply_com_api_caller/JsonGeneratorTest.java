@@ -24,8 +24,6 @@ public class JsonGeneratorTest {
                 "ABB Motors and Mechanical Inc. - Baldor,111\n" +
                 "ABB Motors and Mechanical Inc. - Baldor,222\n" +
                 "ABB Motors and Mechanical Inc. - Baldor,333\n").getBytes(StandardCharsets.UTF_8));
-        Path cookies = dir.resolve("cookies.txt");
-        Files.write(cookies, "a\t1".getBytes(StandardCharsets.UTF_8));
         Path all = dir.resolve("all.json");
         Files.copy(Paths.get("src/main/webapp/suppliers-to-check-all.json"), all);
         Path regal = dir.resolve("regal.json");
@@ -39,8 +37,10 @@ public class JsonGeneratorTest {
         when(mockCaller.call("333", "a\t1"))
             .thenReturn(new ApiResponse(200, "{\"total_qty_available\":0}"));
 
-        JsonGenerator gen = new JsonGenerator(mockCaller, cookies.toString(), csv.toString(), all.toString(), regal.toString());
-        gen.generate();
+        String cookies = "a\t1";
+
+        JsonGenerator gen = new JsonGenerator(mockCaller, csv.toString(), all.toString(), regal.toString());
+        gen.generate(cookies);
 
         String content = new String(Files.readAllBytes(all), StandardCharsets.UTF_8);
         assertThat(content, containsString("222"));
