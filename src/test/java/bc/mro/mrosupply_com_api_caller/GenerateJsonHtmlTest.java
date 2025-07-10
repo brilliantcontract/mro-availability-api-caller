@@ -15,5 +15,6 @@ public class GenerateJsonHtmlTest {
         String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/generate-json.html")), StandardCharsets.UTF_8);
         assertThat(html, containsString("Generate new .json files"));
         assertThat(html, containsString("href=\"generate-json.html\""));
+        assertThat(html, containsString("<pre><code id=\"result\"></code></pre>"));
     }
 }

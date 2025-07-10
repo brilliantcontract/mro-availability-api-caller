@@ -14,10 +14,10 @@ public class GenerateJsonResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response generate(@FormParam("cookies") String cookies) throws IOException {
         JsonGenerator generator = new JsonGenerator(new ApiCallerFrontEnd());
-        generator.generate(cookies == null ? "" : cookies);
-        return Response.ok("JSON files generated").build();
+        javax.json.JsonObject result = generator.generate(cookies == null ? "" : cookies);
+        return Response.ok(result).build();
     }
 }
