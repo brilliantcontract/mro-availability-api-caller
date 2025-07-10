@@ -20,10 +20,10 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(bc.mro.mrosupply_com_api_caller.GenerateJsonResource.class);
         resources.add(bc.mro.mrosupply_com_api_caller.ProductAvailabilityAndPriceOnBackEndResource.class);
         resources.add(bc.mro.mrosupply_com_api_caller.ProductAvailabilityAndPriceOnFrontEndLoggedOutResource.class);
         resources.add(bc.mro.mrosupply_com_api_caller.ProductAvailabilityAndPriceOnFrontEndResource.class);
-        resources.add(bc.mro.mrosupply_com_api_caller.GenerateJsonResource.class);
         resources.add(org.glassfish.jersey.jsonb.internal.JsonBindingProvider.class);
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
     }
