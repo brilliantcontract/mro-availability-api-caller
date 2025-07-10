@@ -85,9 +85,16 @@
             </table>
         </div>
 
+        <script src="js/cookies-db.js"></script>
         <script src="js/report.js"></script>
 
-    	<script>fetch("cookies.txt").then(r=>r.text()).then(t=>{document.getElementById("cookies").value=t.trim();});</script>
+        <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+                const ta = document.getElementById('cookies');
+                ta.value = await cookiesDb.get('cookies');
+                ta.addEventListener('input', () => cookiesDb.set('cookies', ta.value));
+            });
+        </script>
     
         <script>
             function loadJsonIntoTextarea(url) {

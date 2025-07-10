@@ -21,29 +21,26 @@ import javax.json.JsonWriter;
 public class JsonGenerator {
 
     private final ApiCallerFrontEnd apiCaller;
-    private final String cookiesFile;
     private final String csvFile;
     private final String allJson;
     private final String regalJson;
 
     public JsonGenerator(ApiCallerFrontEnd apiCaller) {
-        this(apiCaller, "src/main/webapp/cookies.txt", "products-to-find-available.csv",
+        this(apiCaller, "products-to-find-available.csv",
                 "src/main/webapp/suppliers-to-check-all.json",
                 "src/main/webapp/suppliers-to-check-regal.json");
     }
 
-    public JsonGenerator(ApiCallerFrontEnd apiCaller, String cookiesFile, String csvFile,
+    public JsonGenerator(ApiCallerFrontEnd apiCaller, String csvFile,
             String allJson, String regalJson) {
         this.apiCaller = apiCaller;
-        this.cookiesFile = cookiesFile;
         this.csvFile = csvFile;
         this.allJson = allJson;
         this.regalJson = regalJson;
     }
 
-    public void generate() throws IOException {
+    public void generate(String cookies) throws IOException {
         Map<String, List<String>> csvData = readCsv();
-        String cookies = new String(Files.readAllBytes(Paths.get(cookiesFile)), StandardCharsets.UTF_8);
         List<JsonObject> allSuppliers = loadExisting(Paths.get(allJson));
         List<JsonObject> regalSuppliers = loadExisting(Paths.get(regalJson));
 
