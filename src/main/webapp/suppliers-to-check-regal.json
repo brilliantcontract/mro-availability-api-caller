@@ -3,132 +3,198 @@
         "supplier": "Boston Gear",
         "id1": 1755398,
         "id2": 1755430,
-        "id3": 28943
+        "id3": 28943,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Marathon Electric",
         "id1": 5809538,
         "id2": 6487756,
-        "id3": 6487748
+        "id3": 6487748,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Electra/Grove Gear",
         "id1": 1327500,
         "id2": 1327502,
-        "id3": 1327503
+        "id3": 1327503,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "TB Woods",
         "id1": 2936441,
         "id2": 2936658,
-        "id3": 2936477
+        "id3": 2936477,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "System Plast",
         "id1": 2380166,
         "id2": 2380167,
-        "id3": 2380168
+        "id3": 2380168,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "KOP-FLEX",
         "id1": 96698083,
         "id2": 2292685,
-        "id3": 96698205
+        "id3": 96698205,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Regal Cutting Tools",
         "id1": 6176723,
         "id2": 6176724,
-        "id3": 6176830
+        "id3": 6176830,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Warner Electric",
         "id1": 6457574,
         "id2": 6457575,
-        "id3": 1615300
+        "id3": 1615300,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Browning",
         "id1": 5914760,
         "id2": 5913648,
-        "id3": 5916233
+        "id3": 5916233,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Stearns",
         "id1": 5816379,
         "id2": 6203123,
-        "id3": 2124985
+        "id3": 2124985,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "SealMaster",
         "id1": 2257883,
         "id2": 2257884,
-        "id3": 2790504
+        "id3": 2790504,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Wichita Clutch",
         "id1": 406266,
         "id2": 406263,
-        "id3": 406275
+        "id3": 406275,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "HubCity",
         "id1": 192035,
         "id2": 192036,
-        "id3": 192037
+        "id3": 192037,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Regal Rexnord",
         "id1": 6501582,
         "id2": 96729974,
-        "id3": 95775195
+        "id3": 95775195,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Morse",
         "id1": 2296281,
         "id2": 2296287,
-        "id3": 2296239
+        "id3": 2296239,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Thomson Linear",
         "id1": 5014078,
         "id2": 5014990,
-        "id3": 5014991
+        "id3": 5014991,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Rexnord",
         "id1": 2566335,
         "id2": 523033,
-        "id3": 843273
+        "id3": 843273,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Leeson",
         "id1": 221389,
         "id2": 221390,
-        "id3": 221391
+        "id3": 221391,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "HUCO Products",
         "id1": 2081601,
         "id2": 32802,
-        "id3": 2079694
+        "id3": 2079694,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Formsprag",
         "id1": 6054164,
         "id2": 6054166,
-        "id3": 6456818
+        "id3": 6456818,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "Rollway",
         "id1": 2889912,
         "id2": 2889913,
-        "id3": 2889914
+        "id3": 2889914,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     },
     {
         "supplier": "McGill Bearing",
         "id1": 5824624,
         "id2": 2251313,
-        "id3": 460376
+        "id3": 460376,
+        "catalog_number1": "OR834",
+        "catalog_number2": "BF9484",
+        "catalog_number3": "NGP895"
     }
 ]
