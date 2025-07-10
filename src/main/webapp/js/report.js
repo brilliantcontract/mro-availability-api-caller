@@ -74,7 +74,7 @@
                     counter++;
                     doneCounter.innerText = counter;
 
-                    const {supplier, id1, id2, id3} = listing;
+                    const {supplier, id1, id2, id3, catalog_number1, catalog_number2, catalog_number3} = listing;
                     const supplierSlug = supplier.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
                     const result1 = await checkLoggedInProduct(id1, cookiesText);
@@ -89,9 +89,9 @@
                     const result8 = await checkAdminProduct(id2, cookiesText);
                     const result9 = await checkAdminProduct(id3, cookiesText);
 
-                    const result10 = await checkAopProduct(supplierSlug, id1);
-                    const result11 = await checkAopProduct(supplierSlug, id2);
-                    const result12 = await checkAopProduct(supplierSlug, id3);
+                    const result10 = await checkAopProduct(supplierSlug, catalog_number1);
+                    const result11 = await checkAopProduct(supplierSlug, catalog_number2);
+                    const result12 = await checkAopProduct(supplierSlug, catalog_number3);
 
                     displayResult({
                         supplier,
