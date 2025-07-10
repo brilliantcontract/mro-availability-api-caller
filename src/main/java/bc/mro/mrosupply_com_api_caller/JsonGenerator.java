@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -39,7 +40,7 @@ public class JsonGenerator {
         this.regalJson = regalJson;
     }
 
-    public void generate(String cookies) throws IOException {
+    public JsonObject generate(String cookies) throws IOException {
         Map<String, List<String>> csvData = readCsv();
         List<JsonObject> allSuppliers = loadExisting(Paths.get(allJson));
         List<JsonObject> regalSuppliers = loadExisting(Paths.get(regalJson));
@@ -47,8 +48,21 @@ public class JsonGenerator {
         List<JsonObject> updatedAll = process(allSuppliers, csvData, cookies);
         List<JsonObject> updatedRegal = process(regalSuppliers, csvData, cookies);
 
-        backupAndWrite(Paths.get(allJson), updatedAll);
-        backupAndWrite(Paths.get(regalJson), updatedRegal);
+        JsonArrayBuilder allArr = Json.createArrayBuilder();
+        for (JsonObject o : updatedAll) allArr.add(o);
+        JsonArrayBuilder regalArr = Json.createArrayBuilder();
+        for (JsonObject o : updatedRegal) regalArr.add(o);
+
+        return Json.createObjectBuilder()
+                .add("all", allArr)
+                .add("regal", regalArr)
+                .build();
+    }
+
+    public void generateAndSave(String cookies) throws IOException {
+        JsonObject result = generate(cookies);
+        backupAndWrite(Paths.get(allJson), result.getJsonArray("all").getValuesAs(JsonObject.class));
+        backupAndWrite(Paths.get(regalJson), result.getJsonArray("regal").getValuesAs(JsonObject.class));
     }
 
     private Map<String, List<String>> readCsv() throws IOException {

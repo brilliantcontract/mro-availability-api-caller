@@ -40,12 +40,10 @@ public class JsonGeneratorTest {
         String cookies = "a\t1";
 
         JsonGenerator gen = new JsonGenerator(mockCaller, csv.toString(), all.toString(), regal.toString());
-        gen.generate(cookies);
+        javax.json.JsonObject result = gen.generate(cookies);
 
-        String content = new String(Files.readAllBytes(all), StandardCharsets.UTF_8);
-        assertThat(content, containsString("222"));
-        JsonArray arr = Json.createReader(new java.io.StringReader(content)).readArray();
+        JsonArray arr = result.getJsonArray("all");
         assertEquals("222", arr.getJsonObject(0).get("id1").toString());
-        assertTrue(Files.exists(dir.resolve("backup-" + all.getFileName().toString())));
+        assertFalse(Files.exists(dir.resolve("backup-" + all.getFileName().toString())));
     }
 }
