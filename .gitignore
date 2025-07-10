@@ -53,3 +53,4 @@ output-*.xml
 /iframe-extractor/nbproject/
 /iframe-extractor-web/nbproject/
 /library-cli/nbproject/
+!src/main/resources/products-to-find-available.csv
