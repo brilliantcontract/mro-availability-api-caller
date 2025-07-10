@@ -69,6 +69,7 @@ ranked_products AS (
   SELECT
     s.name brand,
     p.product_id,
+    p.catalog_number,
     ROW_NUMBER() OVER (
       PARTITION BY p.brand_id
       ORDER BY
@@ -82,11 +83,12 @@ ranked_products AS (
 )
 SELECT
   brand,
-  product_id
+  product_id,
+  catalog_number
 FROM
   ranked_products
 WHERE
-  rn &lt;= 3;
+  rn <= 300;
         </pre>
 
         <p>
@@ -130,6 +132,7 @@ ranked_products AS (
   SELECT
     s.name AS brand,
     p.product_id,
+    p.catalog_number,
     ROW_NUMBER() OVER (
       PARTITION BY p.brand_id
       ORDER BY
@@ -160,6 +163,7 @@ WITH ranked_products AS (
   SELECT
     s.name AS supplier,
     p.id AS product_id,
+    p.catalog_number AS catalog_number,
     SUM(oi.qty) AS total_qty,
     ROW_NUMBER() OVER (PARTITION BY s.name ORDER BY SUM(oi.qty) DESC) AS rank
   FROM orders_item oi
