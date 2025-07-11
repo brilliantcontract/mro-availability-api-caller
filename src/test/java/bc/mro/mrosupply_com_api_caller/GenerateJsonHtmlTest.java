@@ -17,4 +17,11 @@ public class GenerateJsonHtmlTest {
         assertThat(html, containsString("href=\"generate-json.html\""));
         assertThat(html, containsString("<pre><code id=\"result\"></code></pre>"));
     }
+
+    @Test
+    public void implementedOnlyCheckboxPresentAndChecked() throws Exception {
+        String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/generate-json.html")), StandardCharsets.UTF_8);
+        assertThat(html, containsString("id=\"implementedOnly\" checked"));
+        assertThat(html, containsString("Check only implemented scripts"));
+    }
 }
