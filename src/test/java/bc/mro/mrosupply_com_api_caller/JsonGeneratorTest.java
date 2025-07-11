@@ -18,10 +18,10 @@ public class JsonGeneratorTest {
     public void generatorUsesFirstAvailableProducts() throws Exception {
         Path dir = Files.createTempDirectory("gen");
         Path csv = dir.resolve("products.csv");
-        Files.write(csv, ("supplier,productId,catalog_number1,catalog_number2,catalog_number3\n" +
-                "ABB Motors and Mechanical Inc. - Baldor,111,CNA,CNB,CNC\n" +
-                "ABB Motors and Mechanical Inc. - Baldor,222,CNA,CNB,CNC\n" +
-                "ABB Motors and Mechanical Inc. - Baldor,333,CNA,CNB,CNC\n").getBytes(StandardCharsets.UTF_8));
+        Files.write(csv, ("supplier,productId,catalog_number\n" +
+                "ABB Motors and Mechanical Inc. - Baldor,111,CNA\n" +
+                "ABB Motors and Mechanical Inc. - Baldor,222,CNB\n" +
+                "ABB Motors and Mechanical Inc. - Baldor,333,CNC\n").getBytes(StandardCharsets.UTF_8));
 
         ApiCallerFrontEnd mockCaller = mock(ApiCallerFrontEnd.class);
         when(mockCaller.call("111", "a\t1"))
@@ -37,9 +37,8 @@ public class JsonGeneratorTest {
         JsonArray result = gen.generate(cookies);
 
         assertEquals("222", result.getJsonObject(0).get("id1").toString());
-
-        assertEquals("CNA", result.getJsonObject(0).getString("catalog_number1"));
-        assertEquals("CNB", result.getJsonObject(0).getString("catalog_number2"));
-        assertEquals("CNC", result.getJsonObject(0).getString("catalog_number3"));
+        assertEquals("CNB", result.getJsonObject(0).getString("catalog_number1"));
+        assertEquals("0", result.getJsonObject(0).get("id2").toString());
+        assertEquals("", result.getJsonObject(0).getString("catalog_number2"));
     }
 }

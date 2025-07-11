@@ -35,11 +35,18 @@ public class JsonGenerator {
         this.csvFile = csvFile;
     }
 
+    private static class ProductRec {
+        final String productId;
+        final String catalogNumber;
+
+        ProductRec(String productId, String catalogNumber) {
+            this.productId = productId;
+            this.catalogNumber = catalogNumber;
+        }
+    }
+
     private static class SupplierData {
-        final List<String> products = new ArrayList<>();
-        String catalog1;
-        String catalog2;
-        String catalog3;
+        final List<ProductRec> products = new ArrayList<>();
     }
 
     public javax.json.JsonArray generate(String cookies) throws IOException {
@@ -51,18 +58,17 @@ public class JsonGenerator {
             String supplier = e.getKey();
             SupplierData data = e.getValue();
             LOG.log(Level.INFO, "Processing supplier {0} with {1} products", new Object[]{supplier, data.products.size()});
-            List<String> selected = selectProducts(data.products, cookies);
+            List<ProductRec> selected = selectProducts(data.products, cookies);
             LOG.log(Level.INFO, "Supplier {0} selected products {1}", new Object[]{supplier, selected});
 
             JsonObjectBuilder b = Json.createObjectBuilder();
             b.add("supplier", supplier);
             for (int i = 0; i < 3; i++) {
-                String id = (i < selected.size()) ? selected.get(i) : "0";
+                String id = (i < selected.size()) ? selected.get(i).productId : "0";
+                String catalog = (i < selected.size()) ? selected.get(i).catalogNumber : "";
                 b.add("id" + (i + 1), Integer.parseInt(id));
+                b.add("catalog_number" + (i + 1), catalog);
             }
-            b.add("catalog_number1", data.catalog1 == null ? "" : data.catalog1);
-            b.add("catalog_number2", data.catalog2 == null ? "" : data.catalog2);
-            b.add("catalog_number3", data.catalog3 == null ? "" : data.catalog3);
             allArr.add(b.build());
         }
 
@@ -88,36 +94,32 @@ public class JsonGenerator {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length < 2) continue;
+                if (parts.length < 3) continue;
                 String supplier = parts[0].trim();
                 String product = parts[1].trim();
+                String catalog = parts[2].trim();
                 SupplierData data = map.computeIfAbsent(supplier, k -> new SupplierData());
-                data.products.add(product);
-                if (parts.length >= 5 && data.catalog1 == null) {
-                    data.catalog1 = parts[2].trim();
-                    data.catalog2 = parts[3].trim();
-                    data.catalog3 = parts[4].trim();
-                }
+                data.products.add(new ProductRec(product, catalog));
             }
         }
         return map;
     }
 
-    private List<String> selectProducts(List<String> products, String cookies) {
-        List<String> result = new ArrayList<>();
-        for (String p : products) {
+    private List<ProductRec> selectProducts(List<ProductRec> products, String cookies) {
+        List<ProductRec> result = new ArrayList<>();
+        for (ProductRec rec : products) {
             if (result.size() == 3) break;
-            LOG.log(Level.INFO, "Checking product {0}", p);
-            ApiResponse response = apiCaller.call(p, cookies);
+            LOG.log(Level.INFO, "Checking product {0}", rec.productId);
+            ApiResponse response = apiCaller.call(rec.productId, cookies);
             try {
                 JsonObject obj = Json.createReader(new java.io.StringReader(response.getBody())).readObject();
                 int qty = obj.getInt("total_qty_available", 0);
-                LOG.log(Level.INFO, "Product {0} qty {1}", new Object[]{p, qty});
+                LOG.log(Level.INFO, "Product {0} qty {1}", new Object[]{rec.productId, qty});
                 if (qty > 0) {
-                    result.add(p);
+                    result.add(rec);
                 }
             } catch (Exception e) {
-                LOG.log(Level.WARNING, "Failed to parse response for product " + p, e);
+                LOG.log(Level.WARNING, "Failed to parse response for product " + rec.productId, e);
             }
         }
         return result;
