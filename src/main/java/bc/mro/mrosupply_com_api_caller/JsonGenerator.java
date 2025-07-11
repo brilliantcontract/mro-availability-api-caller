@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -41,11 +42,11 @@ public class JsonGenerator {
         String catalog3;
     }
 
-    public JsonObject generate(String cookies) throws IOException {
+    public javax.json.JsonArray generate(String cookies) throws IOException {
         Map<String, SupplierData> csvData = readCsv();
         LOG.log(Level.INFO, "Loaded {0} suppliers from CSV", csvData.size());
 
-        List<JsonObject> allSuppliers = new ArrayList<>();
+        JsonArrayBuilder allArr = Json.createArrayBuilder();
         for (Map.Entry<String, SupplierData> e : csvData.entrySet()) {
             String supplier = e.getKey();
             SupplierData data = e.getValue();
@@ -61,15 +62,10 @@ public class JsonGenerator {
             b.add("catalog_number1", data.catalog1 == null ? "" : data.catalog1);
             b.add("catalog_number2", data.catalog2 == null ? "" : data.catalog2);
             b.add("catalog_number3", data.catalog3 == null ? "" : data.catalog3);
-            allSuppliers.add(b.build());
+            allArr.add(b.build());
         }
 
-        JsonArrayBuilder allArr = Json.createArrayBuilder();
-        for (JsonObject o : allSuppliers) allArr.add(o);
-
-        return Json.createObjectBuilder()
-                .add("all", allArr)
-                .build();
+        return allArr.build();
     }
 
     // Method left for backwards compatibility if future persistence is needed

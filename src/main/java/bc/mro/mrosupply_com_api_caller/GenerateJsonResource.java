@@ -17,7 +17,7 @@ public class GenerateJsonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response generate(@FormParam("cookies") String cookies) throws IOException {
         JsonGenerator generator = new JsonGenerator(new ApiCallerFrontEnd());
-        javax.json.JsonObject result = generator.generate(cookies == null ? "" : cookies);
+        javax.json.JsonArray result = generator.generate(cookies == null ? "" : cookies);
         return Response.ok(result).build();
     }
 }

@@ -34,13 +34,12 @@ public class JsonGeneratorTest {
         String cookies = "a\t1";
 
         JsonGenerator gen = new JsonGenerator(mockCaller, csv.toString());
-        javax.json.JsonObject result = gen.generate(cookies);
+        JsonArray result = gen.generate(cookies);
 
-        JsonArray arr = result.getJsonArray("all");
-        assertEquals("222", arr.getJsonObject(0).get("id1").toString());
+        assertEquals("222", result.getJsonObject(0).get("id1").toString());
 
-        assertEquals("CNA", arr.getJsonObject(0).getString("catalog_number1"));
-        assertEquals("CNB", arr.getJsonObject(0).getString("catalog_number2"));
-        assertEquals("CNC", arr.getJsonObject(0).getString("catalog_number3"));
+        assertEquals("CNA", result.getJsonObject(0).getString("catalog_number1"));
+        assertEquals("CNB", result.getJsonObject(0).getString("catalog_number2"));
+        assertEquals("CNC", result.getJsonObject(0).getString("catalog_number3"));
     }
 }
