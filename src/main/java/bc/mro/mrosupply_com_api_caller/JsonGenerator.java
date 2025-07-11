@@ -50,6 +50,7 @@ public class JsonGenerator {
         for (Map.Entry<String, SupplierData> e : csvData.entrySet()) {
             String supplier = e.getKey();
             SupplierData data = e.getValue();
+            LOG.log(Level.INFO, "Processing supplier {0} with {1} products", new Object[]{supplier, data.products.size()});
             List<String> selected = selectProducts(data.products, cookies);
             LOG.log(Level.INFO, "Supplier {0} selected products {1}", new Object[]{supplier, selected});
 
@@ -106,15 +107,17 @@ public class JsonGenerator {
         List<String> result = new ArrayList<>();
         for (String p : products) {
             if (result.size() == 3) break;
+            LOG.log(Level.INFO, "Checking product {0}", p);
             ApiResponse response = apiCaller.call(p, cookies);
             try {
                 JsonObject obj = Json.createReader(new java.io.StringReader(response.getBody())).readObject();
                 int qty = obj.getInt("total_qty_available", 0);
+                LOG.log(Level.INFO, "Product {0} qty {1}", new Object[]{p, qty});
                 if (qty > 0) {
                     result.add(p);
                 }
             } catch (Exception e) {
-                // ignore malformed
+                LOG.log(Level.WARNING, "Failed to parse response for product " + p, e);
             }
         }
         return result;
