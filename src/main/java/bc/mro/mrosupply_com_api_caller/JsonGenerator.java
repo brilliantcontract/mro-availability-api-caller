@@ -61,7 +61,6 @@ public class JsonGenerator {
 
         return Json.createObjectBuilder()
                 .add("all", allArr)
-                .add("regal", Json.createArrayBuilder())
                 .build();
     }
 
