@@ -111,8 +111,22 @@ public class JsonGenerator {
             if (result.size() == 3) break;
             LOG.log(Level.INFO, "Checking product {0}", rec.productId);
             ApiResponse response = apiCaller.call(rec.productId, cookies);
+            String body = response.getBody();
+            if (body == null || body.trim().isEmpty()) {
+                LOG.log(Level.WARNING, "Empty response for product {0}", rec.productId);
+                continue;
+            }
+            if (!body.trim().startsWith("{") && !body.trim().startsWith("[")) {
+                String preview = body.trim();
+                if (preview.length() > 100) {
+                    preview = preview.substring(0, 100) + "...";
+                }
+                LOG.log(Level.WARNING, "Non JSON response for product {0}: {1}", new Object[]{rec.productId, preview});
+                continue;
+            }
+
             try {
-                JsonObject obj = Json.createReader(new java.io.StringReader(response.getBody())).readObject();
+                JsonObject obj = Json.createReader(new java.io.StringReader(body)).readObject();
                 int qty = obj.getInt("total_qty_available", 0);
                 LOG.log(Level.INFO, "Product {0} qty {1}", new Object[]{rec.productId, qty});
                 if (qty > 0) {

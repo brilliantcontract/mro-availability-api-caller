@@ -41,4 +41,25 @@ public class JsonGeneratorTest {
         assertEquals("0", result.getJsonObject(0).get("id2").toString());
         assertEquals("", result.getJsonObject(0).getString("catalog_number2"));
     }
+
+    @Test
+    public void nonJsonResponsesAreIgnored() throws Exception {
+        Path dir = Files.createTempDirectory("gen2");
+        Path csv = dir.resolve("products.csv");
+        Files.write(csv, ("supplier,productId,catalog_number\n" +
+                "ACME,111,CNA\n" +
+                "ACME,222,CNB\n").getBytes(StandardCharsets.UTF_8));
+
+        ApiCallerFrontEnd mockCaller = mock(ApiCallerFrontEnd.class);
+        when(mockCaller.call("111", "c\t1"))
+            .thenReturn(new ApiResponse(200, "<html>fail</html>"));
+        when(mockCaller.call("222", "c\t1"))
+            .thenReturn(new ApiResponse(200, "{\"total_qty_available\":5}"));
+
+        JsonGenerator gen = new JsonGenerator(mockCaller, csv.toString());
+        JsonArray result = gen.generate("c\t1");
+
+        assertEquals(1, result.size());
+        assertEquals("222", result.getJsonObject(0).get("id1").toString());
+    }
 }
