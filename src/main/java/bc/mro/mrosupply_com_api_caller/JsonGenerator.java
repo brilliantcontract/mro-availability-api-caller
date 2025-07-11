@@ -111,6 +111,10 @@ public class JsonGenerator {
             if (result.size() == 3) break;
             LOG.log(Level.INFO, "Checking product {0}", rec.productId);
             ApiResponse response = apiCaller.call(rec.productId, cookies);
+            if (response.getStatus() == 429) {
+                LOG.log(Level.WARNING, "Remote API service is overloaded");
+                break;
+            }
             String body = response.getBody();
             if (body == null || body.trim().isEmpty()) {
                 LOG.log(Level.WARNING, "Empty response for product {0}", rec.productId);

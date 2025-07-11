@@ -28,4 +28,11 @@ public class ReportJsTest {
         assertThat(js, containsString("catalog_number1"));
         assertThat(js, containsString("checkAopProduct(supplierSlug, catalog_number1)"));
     }
+
+    @Test
+    public void overloadedStatusUsesWarningBadge() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("Overloaded"));
+        assertThat(js, containsString("badge-warning"));
+    }
 }

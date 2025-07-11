@@ -6,12 +6,16 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Cookie;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import java.util.Map;
 
 import bc.mro.mrosupply_com_api_caller.CookieUtils;
 
 public class ApiCallerFrontEnd {
+
+    private static final Logger LOG = Logger.getLogger(ApiCallerFrontEnd.class.getName());
 
     public ApiCallerFrontEnd() {
         System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
@@ -54,7 +58,12 @@ public class ApiCallerFrontEnd {
 
         // 4. Fire the GET and handle the response
         try (Response r = req.get()) {
-            return new ApiResponse(r.getStatus(), r.readEntity(String.class));
+            int status = r.getStatus();
+            String body = r.readEntity(String.class);
+            if (status == 429) {
+                LOG.log(Level.WARNING, "Remote API service is overloaded");
+            }
+            return new ApiResponse(status, body);
         }
     }
 

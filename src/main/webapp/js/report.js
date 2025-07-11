@@ -7,7 +7,10 @@
                 const qtyBadge = (result.data && typeof result.data.total_qty_available !== 'undefined')
                         ? `<span class="badge badge-pill ${result.data.total_qty_available > 0 ? 'badge-info' : 'badge-secondary'} ml-1">${result.data.total_qty_available}</span>`
                         : '';
-                return `<a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${result.status === 'Success' ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'}">${result.status}</span>${qtyBadge}</a>`;
+                let cls = 'badge badge-pill badge-danger';
+                if (result.status === 'Success') cls = 'badge badge-pill badge-success';
+                else if (result.status === 'Overloaded') cls = 'badge badge-pill badge-warning';
+                return `<a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${cls}">${result.status}</span>${qtyBadge}</a>`;
             }
 
             const CONCURRENCY = 4; // how many suppliers are processed in parallel
@@ -151,6 +154,9 @@
                             const data = await response.json();
                             return {status: "Fail", data: data};
                         }
+                        if (response.status === 429) {
+                            return {status: "Overloaded", data: null};
+                        }
 
                         if (!response.ok) {
                             throw new Error("HTTP error " + response.status);
@@ -193,6 +199,9 @@
                         if (response.status === 403) {
                             const data = await response.json();
                             return {status: "Fail", data: data};
+                        }
+                        if (response.status === 429) {
+                            return {status: "Overloaded", data: null};
                         }
 
                         if (!response.ok) {
@@ -237,6 +246,9 @@
                         if (response.status === 403) {
                             const data = await response.json();
                             return {status: "Fail", data: data};
+                        }
+                        if (response.status === 429) {
+                            return {status: "Overloaded", data: null};
                         }
 
                         if (!response.ok) {
