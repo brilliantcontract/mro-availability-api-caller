@@ -2,6 +2,7 @@ package bc.mro.mrosupply_com_api_caller;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static org.hamcrest.CoreMatchers.containsString;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import javax.json.JsonArray;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 
@@ -61,5 +63,39 @@ public class JsonGeneratorTest {
 
         assertEquals(1, result.size());
         assertEquals("222", result.getJsonObject(0).get("id1").toString());
+    }
+
+    @Test
+    public void logsWhenServiceOverloaded() throws Exception {
+        Path dir = Files.createTempDirectory("gen3");
+        Path csv = dir.resolve("products.csv");
+        Files.write(csv, ("supplier,productId,catalog_number\n" +
+                "ACME,111,CNA\n").getBytes(StandardCharsets.UTF_8));
+
+        ApiCallerFrontEnd mockCaller = mock(ApiCallerFrontEnd.class);
+        when(mockCaller.call("111", "d\t1"))
+            .thenReturn(new ApiResponse(429, "Too many"));
+
+        JsonGenerator gen = new JsonGenerator(mockCaller, csv.toString());
+        Logger logger = Logger.getLogger(JsonGenerator.class.getName());
+        TestHandler handler = new TestHandler();
+        logger.addHandler(handler);
+        try {
+            gen.generate("d\t1");
+        } finally {
+            logger.removeHandler(handler);
+        }
+
+        assertThat(handler.msg.toString(), containsString("overloaded"));
+    }
+
+    private static class TestHandler extends java.util.logging.Handler {
+        StringBuilder msg = new StringBuilder();
+        @Override
+        public void publish(java.util.logging.LogRecord record) {
+            msg.append(record.getMessage());
+        }
+        @Override public void flush() {}
+        @Override public void close() throws SecurityException {}
     }
 }
