@@ -40,5 +40,6 @@ public class JsonGeneratorTest {
 
         JsonArray arr = result.getJsonArray("all");
         assertEquals("222", arr.getJsonObject(0).get("id1").toString());
+        assertFalse(result.containsKey("regal"));
     }
 }

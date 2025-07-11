@@ -17,5 +17,6 @@ public class IndexHtmlTest {
         assertThat(html, containsString("<textarea id=\"productsToCheck\" class=\"form-control\" placeholder=\"Products to check\" rows=\"20\"></textarea><br />"));
         assertThat(html, containsString("loadJsonIntoTextarea('suppliers-to-check-all.json');"));
         assertThat(html, not(containsString("\"supplier\": \"A & P BEARINGS\"")));
+        assertThat(html, not(containsString("load-regal-brands")));
     }
 }

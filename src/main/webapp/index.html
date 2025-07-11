@@ -32,8 +32,7 @@
             <h5>Insert cookies with mrosupply.com session ID</h5>
             <textarea id="cookies" class="form-control" placeholder="Paste cookies here..." rows="3"></textarea><br />
 
-            <a href="suppliers-to-check-all.json" id="load-all-brands">JSON for all brands with A&P scripts</a> |
-            <a href="suppliers-to-check-regal.json" id="load-regal-brands">JSON for all Regal brands</a>
+            <a href="suppliers-to-check-all.json" id="load-all-brands">JSON for all brands with A&P scripts</a>
 
             <textarea id="productsToCheck" class="form-control" placeholder="Products to check" rows="20"></textarea><br />
 
@@ -111,11 +110,6 @@
             document.getElementById('load-all-brands').addEventListener('click', function (e) {
                 e.preventDefault();
                 loadJsonIntoTextarea('suppliers-to-check-all.json');
-            });
-
-            document.getElementById('load-regal-brands').addEventListener('click', function (e) {
-                e.preventDefault();
-                loadJsonIntoTextarea('suppliers-to-check-regal.json');
             });
 
             loadJsonIntoTextarea('suppliers-to-check-all.json');
