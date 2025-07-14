@@ -282,6 +282,22 @@
                     if (data && data.result && data.result.success === false) {
                         return {status: "Fail", data};
                     }
+
+                    let total = data.total_qty_available;
+                    if (typeof total === 'undefined' && data.result) {
+                        if (typeof data.result.total_qty_available !== 'undefined') {
+                            total = data.result.total_qty_available;
+                        } else if (typeof data.result.qty_available !== 'undefined') {
+                            total = data.result.qty_available;
+                        } else if (data.result.availability) {
+                            total = Object.values(data.result.availability)
+                                    .reduce((sum, a) => sum + (a && a.qty ? a.qty : 0), 0);
+                        }
+                    }
+                    if (typeof total !== 'undefined') {
+                        data.total_qty_available = total;
+                    }
+
                     return {status: "Success", data};
                 } catch (err) {
                     console.warn("AOP request failed", err);

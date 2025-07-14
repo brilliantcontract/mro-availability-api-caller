@@ -53,8 +53,18 @@
                     const response = await fetch(url);
                     if (!response.ok) return {available:false};
                     const data = await response.json();
-                    const qty = data && data.result && data.result.qty_available;
-                    return {available: qty > 0};
+                    let qty;
+                    if (data && data.result) {
+                        if (typeof data.result.qty_available !== 'undefined') {
+                            qty = data.result.qty_available;
+                        } else if (typeof data.result.total_qty_available !== 'undefined') {
+                            qty = data.result.total_qty_available;
+                        } else if (data.result.availability) {
+                            qty = Object.values(data.result.availability)
+                                    .reduce((sum, a) => sum + (a && a.qty ? a.qty : 0), 0);
+                        }
+                    }
+                    return {available: Number(qty) > 0};
                 } catch (e) {
                     return {available:false};
                 }
