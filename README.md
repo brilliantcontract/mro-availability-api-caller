@@ -11,6 +11,8 @@ This project provides a small Java application that can be deployed as a WAR and
   - `ApiCallerFrontEnd` – calls the public API when logged in.
   - `ApiCallerFrontEndLoggedOut` – calls the public API without session cookies.
 - Test utilities under `src/test` showcase basic calls to these APIs.
+- `bulk-supplier-check.html` web page allows checking multiple product IDs
+  against a selected supplier.
 
 ## Building
 
