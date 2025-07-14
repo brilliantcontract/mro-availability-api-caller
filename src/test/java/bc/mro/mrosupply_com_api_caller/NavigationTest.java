@@ -13,7 +13,7 @@ import org.junit.Test;
 public class NavigationTest {
     @Test
     public void allPagesHaveGenerateLink() throws Exception {
-        String[] pages = {"src/main/webapp/index.html", "src/main/webapp/help.html", "src/main/webapp/test.html", "src/main/webapp/generate-json.html"};
+        String[] pages = {"src/main/webapp/index.html", "src/main/webapp/help.html", "src/main/webapp/test.html", "src/main/webapp/generate-json.html", "src/main/webapp/bulk-supplier-check.html"};
         for (String page : pages) {
             String html = new String(Files.readAllBytes(Paths.get(page)), StandardCharsets.UTF_8);
             assertThat(html, containsString("href=\"generate-json.html\""));
@@ -22,7 +22,7 @@ public class NavigationTest {
 
     @Test
     public void navigationLinksDoNotUseBlankTarget() throws Exception {
-        String[] pages = {"src/main/webapp/index.html", "src/main/webapp/help.html", "src/main/webapp/test.html", "src/main/webapp/generate-json.html"};
+        String[] pages = {"src/main/webapp/index.html", "src/main/webapp/help.html", "src/main/webapp/test.html", "src/main/webapp/generate-json.html", "src/main/webapp/bulk-supplier-check.html"};
         for (String page : pages) {
             String html = new String(Files.readAllBytes(Paths.get(page)), StandardCharsets.UTF_8);
             int navStart = html.indexOf("<nav");
