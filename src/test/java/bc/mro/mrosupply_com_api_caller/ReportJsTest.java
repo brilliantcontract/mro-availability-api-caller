@@ -30,6 +30,13 @@ public class ReportJsTest {
     }
 
     @Test
+    public void availabilityHandledWhenCalculatingQty() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("data.result.availability"));
+        assertThat(js, containsString("data.total_qty_available = total"));
+    }
+
+    @Test
     public void overloadedStatusUsesWarningBadge() throws Exception {
         String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
         assertThat(js, containsString("Overloaded"));
