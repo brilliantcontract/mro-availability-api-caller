@@ -182,12 +182,12 @@
   {
     "supplier": "Electra Gear/Grove Gear",
     "script": "",
-    "id1": 221146,
-    "id2": 221147,
-    "id3": 221148,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 228416,
+    "id2": 1339561,
+    "id3": 1339564,
+    "catalog_number1": "W5200083",
+    "catalog_number2": "GRG8210115",
+    "catalog_number3": "GRG8210118"
   },
   {
     "supplier": "FK Bearings, Inc.",
@@ -202,12 +202,12 @@
   {
     "supplier": "Flexco",
     "script": "flexco",
-    "id1": 155152,
-    "id2": 155153,
-    "id3": 155154,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 156511,
+    "id2": 155817,
+    "id3": 156451,
+    "catalog_number1": "20013",
+    "catalog_number2": "01179",
+    "catalog_number3": "18400"
   },
   {
     "supplier": "Formsprag",
@@ -232,12 +232,12 @@
   {
     "supplier": "Gates Rubber",
     "script": "gates",
-    "id1": 157818,
-    "id2": 157819,
-    "id3": 157820,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2233448,
+    "id2": 183651,
+    "id3": 2233496,
+    "catalog_number1": "8MGT-800-36",
+    "catalog_number2": "5M710",
+    "catalog_number3": "14MGT-1750-37"
   },
   {
     "supplier": "HD Hyundai Electric",
@@ -272,22 +272,22 @@
   {
     "supplier": "HubCity",
     "script": "",
-    "id1": 184420,
+    "id1": 194366,
     "id2": 184421,
     "id3": 184422,
-    "catalog_number1": "OR834",
+    "catalog_number1": "0220-01538",
     "catalog_number2": "BF9484",
     "catalog_number3": "NGP895"
   },
   {
     "supplier": "Hubbell Wiring Devices",
     "script": "hubbell",
-    "id1": 50,
-    "id2": 77,
-    "id3": 867142,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 1020827,
+    "id2": 1021351,
+    "id3": 1020784,
+    "catalog_number1": "HBL2431",
+    "catalog_number2": "HBL2710",
+    "catalog_number3": "HBL2421"
   },
   {
     "supplier": "Hydraulic Technologies USA LLC",
@@ -302,72 +302,72 @@
   {
     "supplier": "IDC Select",
     "script": "",
-    "id1": 199410,
+    "id1": 1852162,
     "id2": 1288660,
     "id3": 1852159,
-    "catalog_number1": "OR834",
+    "catalog_number1": "3B074SK",
     "catalog_number2": "BF9484",
     "catalog_number3": "NGP895"
   },
   {
     "supplier": "IKO Bearing",
     "script": "iko",
-    "id1": 860403,
-    "id2": 860404,
-    "id3": 860405,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 861291,
+    "id2": 1912139,
+    "id3": 863185,
+    "catalog_number1": "CR81VBUU",
+    "catalog_number2": "NAU4914UU",
+    "catalog_number3": "NTB120155"
   },
   {
     "supplier": "IPTCI Bearing",
     "script": "iptci",
-    "id1": 217082,
-    "id2": 217083,
-    "id3": 217084,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 218791,
+    "id2": 218608,
+    "id3": 218708,
+    "catalog_number1": "NA 208 24 L3",
+    "catalog_number2": "ER 204 12",
+    "catalog_number3": "SA 206 20 N"
   },
   {
     "supplier": "Isostatic Industries",
     "script": "",
-    "id1": 1379931,
-    "id2": 1379935,
-    "id3": 1379936,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 1384728,
+    "id2": 1382671,
+    "id3": 1384807,
+    "catalog_number1": "FB-810-4",
+    "catalog_number2": "FF-1213-4",
+    "catalog_number3": "FF-411-1"
   },
   {
     "supplier": "Jason Industrial",
     "script": "jason",
-    "id1": 639525,
-    "id2": 640563,
-    "id3": 641083,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2017258,
+    "id2": 2017242,
+    "id3": 1695545,
+    "catalog_number1": "6341-1606",
+    "catalog_number2": "6341-0812",
+    "catalog_number3": "6341-0804"
   },
   {
     "supplier": "Koyo Bearing",
     "script": "",
-    "id1": 99,
-    "id2": 200004,
-    "id3": 1493781,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 1496305,
+    "id2": 1495994,
+    "id3": 1495742,
+    "catalog_number1": "DD-52404",
+    "catalog_number2": "B-3412",
+    "catalog_number3": "ST2455"
   },
   {
     "supplier": "Leeson",
     "script": "leeson",
-    "id1": 82,
-    "id2": 220847,
-    "id3": 220848,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2270449,
+    "id2": 221464,
+    "id3": 191564,
+    "catalog_number1": "B319",
+    "catalog_number2": "098032",
+    "catalog_number3": "2834230"
   },
   {
     "supplier": "Linn Gear",
@@ -382,62 +382,62 @@
   {
     "supplier": "LoveJoy",
     "script": "lovejoy",
-    "id1": 237593,
+    "id1": 237605,
     "id2": 237594,
     "id3": 237605,
-    "catalog_number1": "OR834",
+    "catalog_number1": "68514410424",
     "catalog_number2": "BF9484",
     "catalog_number3": "NGP895"
   },
   {
     "supplier": "MRC Bearing",
     "script": "mrc",
-    "id1": 1131720,
-    "id2": 1131722,
+    "id1": 1132900,
+    "id2": 1133550,
     "id3": 1131725,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
+    "catalog_number1": "5206SBZZ",
+    "catalog_number2": "88503",
     "catalog_number3": "NGP895"
   },
   {
     "supplier": "Marathon Electric",
     "script": "",
-    "id1": 223522,
-    "id2": 225171,
-    "id3": 227278,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 5122525,
+    "id2": 5783564,
+    "id3": 5772429,
+    "catalog_number1": "GT0046A",
+    "catalog_number2": "GT0019A",
+    "catalog_number3": "GT1025A"
   },
   {
     "supplier": "Martin Sprocket",
     "script": "martin",
-    "id1": 62,
-    "id2": 247322,
-    "id3": 247323,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 250096,
+    "id2": 250207,
+    "id3": 252940,
+    "catalog_number1": "7JEM",
+    "catalog_number2": "9JEM",
+    "catalog_number3": "6HF304-R"
   },
   {
     "supplier": "MasterDrive, Inc",
     "script": "masterdrives",
-    "id1": 2333800,
-    "id2": 2333802,
+    "id1": 2334264,
+    "id2": 2334909,
     "id3": 2333803,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
+    "catalog_number1": "1VM50-7/8",
+    "catalog_number2": "2AK61H",
     "catalog_number3": "NGP895"
   },
   {
     "supplier": "McGill Bearing",
     "script": "",
-    "id1": 458662,
-    "id2": 459038,
-    "id3": 459059,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2249942,
+    "id2": 2249512,
+    "id3": 2249661,
+    "catalog_number1": "SB 22211 C3 W33 YSS",
+    "catalog_number2": "CF 2 SB",
+    "catalog_number3": "CYR 1 S"
   },
   {
     "supplier": "Moline Bearing",
@@ -452,12 +452,12 @@
   {
     "supplier": "Morse",
     "script": "",
-    "id1": 414000,
-    "id2": 414043,
-    "id3": 414048,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2296251,
+    "id2": 2296365,
+    "id3": 2296263,
+    "catalog_number1": "068049",
+    "catalog_number2": "465903",
+    "catalog_number3": "064036"
   },
   {
     "supplier": "NSI Industries, LLC",
@@ -472,12 +472,12 @@
   {
     "supplier": "Nachi Bearing",
     "script": "",
-    "id1": 55,
-    "id2": 207382,
-    "id3": 207385,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 207569,
+    "id2": 207786,
+    "id3": 207509,
+    "catalog_number1": "6004-2NSE9C3",
+    "catalog_number2": "6009-2NSE9C3",
+    "catalog_number3": "6001-2NSE9C3"
   },
   {
     "supplier": "Nexen Clutch and Brake",
@@ -492,12 +492,12 @@
   {
     "supplier": "Nord Gear",
     "script": "nordgear",
-    "id1": 58,
-    "id2": 623962,
-    "id3": 623963,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 623962,
+    "id2": 5791466,
+    "id3": 5674192,
+    "catalog_number1": "32610012",
+    "catalog_number2": "36813784",
+    "catalog_number3": "33610294"
   },
   {
     "supplier": "North American Electric",
@@ -532,22 +532,22 @@
   {
     "supplier": "RAB Lighting",
     "script": "rab",
-    "id1": 56,
-    "id2": 78,
-    "id3": 1427993,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 1430674,
+    "id2": 1430675,
+    "id3": 1431490,
+    "catalog_number1": "H101A",
+    "catalog_number2": "H101B",
+    "catalog_number3": "STL360"
   },
   {
     "supplier": "Red Lion Controls",
     "script": "redlion",
-    "id1": 286236,
-    "id2": 286249,
-    "id3": 286250,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 286765,
+    "id2": 286786,
+    "id3": 286594,
+    "catalog_number1": "CUB5R000",
+    "catalog_number2": "CUB5B000",
+    "catalog_number3": "MP62TA00"
   },
   {
     "supplier": "Reelcraft",
@@ -562,52 +562,52 @@
   {
     "supplier": "Rexnord",
     "script": "regal",
-    "id1": 59,
-    "id2": 75,
-    "id3": 463398,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 478607,
+    "id2": 478472,
+    "id3": 478619,
+    "catalog_number1": "7300035",
+    "catalog_number2": "3701476",
+    "catalog_number3": "7300040"
   },
   {
     "supplier": "Rollway",
     "script": "",
-    "id1": 453932,
-    "id2": 2300083,
-    "id3": 2300084,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2302197,
+    "id2": 2889567,
+    "id3": 2300335,
+    "catalog_number1": "L-5314-U",
+    "catalog_number2": "22315 GMEX C3 W33",
+    "catalog_number3": "22222 CA KC3 W33"
   },
   {
     "supplier": "SKF Bearing (Alaska)",
     "script": "skf_bearing",
-    "id1": 54,
-    "id2": 87,
-    "id3": 312292,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 321880,
+    "id2": 322628,
+    "id3": 321973,
+    "catalog_number1": "22222 EK/C3",
+    "catalog_number2": "22215 EK/C3",
+    "catalog_number3": "22220 EK/C3"
   },
   {
     "supplier": "SKF Seals",
     "script": "skf_seal",
-    "id1": 83,
-    "id2": 298791,
-    "id3": 298870,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 1909786,
+    "id2": 1909647,
+    "id3": 2574886,
+    "catalog_number1": "6293",
+    "catalog_number2": "530484",
+    "catalog_number3": "619704"
   },
   {
     "supplier": "SealMaster",
     "script": "",
-    "id1": 416305,
-    "id2": 416317,
-    "id3": 416327,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 421810,
+    "id2": 2255752,
+    "id3": 421803,
+    "catalog_number1": "MP-47",
+    "catalog_number2": "700456",
+    "catalog_number3": "MP-39"
   },
   {
     "supplier": "Silverthin Bearing Group",
@@ -622,42 +622,42 @@
   {
     "supplier": "Smith Bearings",
     "script": "",
-    "id1": 728130,
-    "id2": 728132,
-    "id3": 858971,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2789579,
+    "id2": 1855476,
+    "id3": 2789601,
+    "catalog_number1": "VCR-2-1/2",
+    "catalog_number2": "VCR-2",
+    "catalog_number3": "VYR-3-1/2"
   },
   {
     "supplier": "SolaHD",
     "script": "solahd",
-    "id1": 1010877,
+    "id1": 1011862,
     "id2": 1010924,
     "id3": 1010925,
-    "catalog_number1": "OR834",
+    "catalog_number1": "SDN1024480C",
     "catalog_number2": "BF9484",
     "catalog_number3": "NGP895"
   },
   {
     "supplier": "System Plast",
     "script": "",
-    "id1": 330584,
-    "id2": 330657,
-    "id3": 330697,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2382405,
+    "id2": 2382610,
+    "id3": 2382660,
+    "catalog_number1": "VG-221-12",
+    "catalog_number2": "VG-018-03",
+    "catalog_number3": "VG-203TC-12"
   },
   {
     "supplier": "TB Woods",
     "script": "tbwoods",
-    "id1": 30760,
-    "id2": 30765,
-    "id3": 30766,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 345948,
+    "id2": 340619,
+    "id3": 340226,
+    "catalog_number1": "BK77138",
+    "catalog_number2": "EL278",
+    "catalog_number3": "SK50MM"
   },
   {
     "supplier": "Techtop",
@@ -692,32 +692,32 @@
   {
     "supplier": "U.S.Seal Mfg",
     "script": "usseal",
-    "id1": 2183689,
-    "id2": 2183690,
-    "id3": 2183691,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2185569,
+    "id2": 2188378,
+    "id3": 2184506,
+    "catalog_number1": "PS-4031",
+    "catalog_number2": "VGM-2756",
+    "catalog_number3": "PS-200V-CMS"
   },
   {
     "supplier": "U.S.Tsubaki, Inc.",
     "script": "",
-    "id1": 389847,
+    "id1": 2854354,
     "id2": 389848,
     "id3": 389849,
-    "catalog_number1": "OR834",
+    "catalog_number1": "TSBSB05",
     "catalog_number2": "BF9484",
     "catalog_number3": "NGP895"
   },
   {
     "supplier": "WEG",
     "script": "weg",
-    "id1": 1307886,
-    "id2": 1307887,
-    "id3": 1307888,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 1312205,
+    "id2": 2521434,
+    "id3": 1312255,
+    "catalog_number1": "00518ET3E184T-W22",
+    "catalog_number2": "CWB9-11-30C03",
+    "catalog_number3": "01018ET3E215T-W22"
   },
   {
     "supplier": "Warner Electric",
@@ -742,10 +742,10 @@
   {
     "supplier": "WorldWide Electric",
     "script": "wwe",
-    "id1": 842371,
+    "id1": 2977596,
     "id2": 1238611,
     "id3": 1238959,
-    "catalog_number1": "OR834",
+    "catalog_number1": "NATE1.5-18-56CB",
     "catalog_number2": "BF9484",
     "catalog_number3": "NGP895"
   }
