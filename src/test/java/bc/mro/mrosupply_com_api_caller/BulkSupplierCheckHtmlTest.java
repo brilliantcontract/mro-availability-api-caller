@@ -18,10 +18,4 @@ public class BulkSupplierCheckHtmlTest {
         assertThat(html, containsString("Bulk check"));
         assertThat(html, containsString("Copy available"));
     }
-
-    @Test
-    public void optionDisabledWhenScriptEmpty() throws Exception {
-        String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/bulk-supplier-check.html")), StandardCharsets.UTF_8);
-        assertThat(html, containsString("o.disabled = true;"));
-    }
 }

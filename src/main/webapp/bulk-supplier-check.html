@@ -43,9 +43,6 @@
                     const o = document.createElement('option');
                     o.value = entry.script;
                     o.textContent = entry.supplier;
-                    if (!entry.script) {
-                        o.disabled = true;
-                    }
                     sel.appendChild(o);
                 });
             }
