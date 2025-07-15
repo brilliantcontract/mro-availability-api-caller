@@ -70,4 +70,14 @@ public class ReportJsTest {
         assertThat(js, containsString("data.detail && data.detail.includes('Authentication credentials')"));
         assertThat(js, containsString("return {status: \"Not authorized\""));
     }
+
+    @Test
+    public void unauthorizedStatusHandledForLoggedOut() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        int start = js.indexOf("async function checkLoggedOutProduct");
+        int end = js.indexOf("async function checkAdminProduct", start);
+        String sub = js.substring(start, end);
+        assertThat(sub, containsString("data.detail && data.detail.includes('Authentication credentials')"));
+        assertThat(sub, containsString("return {status: \"Not authorized\""));
+    }
 }

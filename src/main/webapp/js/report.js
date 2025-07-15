@@ -200,6 +200,9 @@
 
                         if (response.status === 403) {
                             const data = await response.json();
+                            if (data && data.detail && data.detail.includes('Authentication credentials')) {
+                                return {status: "Not authorized", data};
+                            }
                             return {status: "Fail", data: data};
                         }
                         if (response.status === 429) {
