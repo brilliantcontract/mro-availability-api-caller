@@ -275,10 +275,21 @@
 
                 try {
                     const response = await fetch(url);
+                    let data = null;
+                    try {
+                        data = await response.json();
+                    } catch (e) {
+                        data = null;
+                    }
+
+                    if (data && data.error && data.error.includes('not active')) {
+                        return {status: "Not active", data};
+                    }
+
                     if (!response.ok) {
                         throw new Error("HTTP error " + response.status);
                     }
-                    const data = await response.json();
+
                     if (data && data.result && data.result.success === false) {
                         return {status: "Fail", data};
                     }
