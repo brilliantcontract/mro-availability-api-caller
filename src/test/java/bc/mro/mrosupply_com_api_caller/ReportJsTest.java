@@ -42,4 +42,11 @@ public class ReportJsTest {
         assertThat(js, containsString("Overloaded"));
         assertThat(js, containsString("badge-warning"));
     }
+
+    @Test
+    public void notActiveStatusHandled() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("data.error && data.error.includes('not active')"));
+        assertThat(js, containsString("return {status: \"Not active\""));
+    }
 }
