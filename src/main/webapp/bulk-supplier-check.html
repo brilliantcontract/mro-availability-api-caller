@@ -37,12 +37,12 @@
             async function loadSuppliers() {
                 const resp = await fetch('suppliers-to-check-all.json');
                 const data = await resp.json();
-                const names = [...new Set(data.map(x => x.supplier))].sort();
+                const sorted = data.sort((a, b) => a.supplier.localeCompare(b.supplier));
                 const sel = document.getElementById('supplierSelect');
-                names.forEach(n => {
+                sorted.forEach(entry => {
                     const o = document.createElement('option');
-                    o.value = n;
-                    o.textContent = n;
+                    o.value = entry.script;
+                    o.textContent = entry.supplier;
                     sel.appendChild(o);
                 });
             }
@@ -73,8 +73,7 @@
             document.addEventListener('DOMContentLoaded', loadSuppliers);
 
             document.getElementById('bulkCheck').addEventListener('click', async () => {
-                const supplier = document.getElementById('supplierSelect').value;
-                const slug = supplier.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                const slug = document.getElementById('supplierSelect').value;
                 const lines = document.getElementById('bulkInput').value.trim().split(/\n+/);
                 const res = document.getElementById('results');
                 res.innerHTML = '';
