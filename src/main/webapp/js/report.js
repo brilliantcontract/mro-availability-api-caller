@@ -77,8 +77,7 @@
                     counter++;
                     doneCounter.innerText = counter;
 
-                    const {supplier, id1, id2, id3, catalog_number1, catalog_number2, catalog_number3} = listing;
-                    const supplierSlug = supplier.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    const {supplier, script, id1, id2, id3, catalog_number1, catalog_number2, catalog_number3} = listing;
 
                     const result1 = await checkLoggedInProduct(id1, cookiesText);
                     const result2 = await checkLoggedInProduct(id2, cookiesText);
@@ -92,9 +91,9 @@
                     const result8 = await checkAdminProduct(id2, cookiesText);
                     const result9 = await checkAdminProduct(id3, cookiesText);
 
-                    const result10 = await checkAopProduct(supplierSlug, catalog_number1);
-                    const result11 = await checkAopProduct(supplierSlug, catalog_number2);
-                    const result12 = await checkAopProduct(supplierSlug, catalog_number3);
+                    const result10 = await checkAopProduct(script, catalog_number1);
+                    const result11 = await checkAopProduct(script, catalog_number2);
+                    const result12 = await checkAopProduct(script, catalog_number3);
 
                     displayResult({
                         supplier,
@@ -270,8 +269,8 @@
                 return {status: "Unsuccessful", data: null};
             }
 
-            async function checkAopProduct(supplierSlug, catalogNumber) {
-                const url = `http://mroscrape.top:4003/scrapers/${supplierSlug}/availability?token=mro-high-secret&catalog_number=${encodeURIComponent(catalogNumber)}`;
+            async function checkAopProduct(script, catalogNumber) {
+                const url = `http://mroscrape.top:4003/scrapers/${script}/availability?token=mro-high-secret&catalog_number=${encodeURIComponent(catalogNumber)}`;
 
                 try {
                     const response = await fetch(url);

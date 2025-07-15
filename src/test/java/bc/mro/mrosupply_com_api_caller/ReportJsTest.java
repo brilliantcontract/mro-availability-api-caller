@@ -26,7 +26,7 @@ public class ReportJsTest {
     public void catalogNumbersUsedForAop() throws Exception {
         String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
         assertThat(js, containsString("catalog_number1"));
-        assertThat(js, containsString("checkAopProduct(supplierSlug, catalog_number1)"));
+        assertThat(js, containsString("checkAopProduct(script, catalog_number1)"));
     }
 
     @Test
