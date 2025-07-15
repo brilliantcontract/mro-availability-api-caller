@@ -284,6 +284,9 @@
                     if (data && data.error && data.error.includes('not active')) {
                         return {status: "Not active", data};
                     }
+                    if (data && data.error && data.error.includes('No module named')) {
+                        return {status: "No script found", data};
+                    }
 
                     if (!response.ok) {
                         throw new Error("HTTP error " + response.status);
