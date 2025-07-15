@@ -9,7 +9,7 @@
                         : '';
                 let cls = 'badge badge-pill badge-danger';
                 if (result.status === 'Success') cls = 'badge badge-pill badge-success';
-                else if (result.status === 'Overloaded') cls = 'badge badge-pill badge-warning';
+                else if (result.status === 'Overloaded' || result.status === 'Not authorized') cls = 'badge badge-pill badge-warning';
                 return `<a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${cls}">${result.status}</span>${qtyBadge}</a>`;
             }
 
@@ -151,7 +151,10 @@
 
                         if (response.status === 403) {
                             const data = await response.json();
-                            return {status: "Fail", data: data};
+                            if (data && data.detail && data.detail.includes('Authentication credentials')) {
+                                return {status: "Not authorized", data};
+                            }
+                            return {status: "Fail", data};
                         }
                         if (response.status === 429) {
                             return {status: "Overloaded", data: null};
