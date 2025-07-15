@@ -291,6 +291,9 @@
                     }
 
                     if (data && data.result && data.result.success === false) {
+                        if (data.result.error === 'Selenium Grid is not reachable') {
+                            return {status: "Selenium down", data};
+                        }
                         return {status: "Fail", data};
                     }
 
