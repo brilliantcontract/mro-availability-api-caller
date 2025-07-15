@@ -19,4 +19,16 @@ public class IndexHtmlTest {
         assertThat(html, not(containsString("\"supplier\": \"A & P BEARINGS\"")));
         assertThat(html, not(containsString("load-regal-brands")));
     }
+
+    @Test
+    public void legendTableContainsAllBadges() throws Exception {
+        String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/index.html")), StandardCharsets.UTF_8);
+        assertThat(html, containsString("id=\"legend-table\""));
+        assertThat(html, containsString("Fail"));
+        assertThat(html, containsString("Success"));
+        assertThat(html, containsString("Overloaded"));
+        assertThat(html, containsString("Selenium down"));
+        assertThat(html, containsString("No script found"));
+        assertThat(html, containsString("Not authorized"));
+    }
 }
