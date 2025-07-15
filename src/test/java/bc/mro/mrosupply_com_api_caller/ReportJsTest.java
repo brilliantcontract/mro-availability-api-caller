@@ -63,4 +63,11 @@ public class ReportJsTest {
         assertThat(js, containsString("data.error && data.error.includes('No module named')"));
         assertThat(js, containsString("return {status: \"No script found\""));
     }
+
+    @Test
+    public void unauthorizedStatusHandled() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("data.detail && data.detail.includes('Authentication credentials')"));
+        assertThat(js, containsString("return {status: \"Not authorized\""));
+    }
 }
