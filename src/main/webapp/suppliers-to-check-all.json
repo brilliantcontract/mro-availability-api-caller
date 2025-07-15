@@ -32,41 +32,41 @@
   {
     "supplier": "Alemite Corp",
     "script": "alemite",
-    "id1": 76,
-    "id2": 18636,
-    "id3": 2309856,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2310401,
+    "id2": 2310144,
+    "id3": 2310567,
+    "catalog_number1": "8078-D",
+    "catalog_number2": "3530",
+    "catalog_number3": "9968"
   },
   {
     "supplier": "BESTORQ",
     "script": "bestorq",
-    "id1": 630211,
-    "id2": 689670,
-    "id3": 2242433,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 5954460,
+    "id2": 2243331,
+    "id3": 5954457,
+    "catalog_number1": "A93LG",
+    "catalog_number2": "5VX800",
+    "catalog_number3": "A90LG"
   },
   {
     "supplier": "Bando - Direct",
     "script": "bando",
-    "id1": 626116,
-    "id2": 675445,
-    "id3": 675446,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 678154,
+    "id2": 681849,
+    "id3": 676671,
+    "catalog_number1": "4L360",
+    "catalog_number2": "120XL037G",
+    "catalog_number3": "A58"
   },
   {
     "supplier": "Bearing Service - FAG",
     "script": "",
-    "id1": 2171289,
-    "id2": 2171290,
+    "id1": 207723,
+    "id2": 1494779,
     "id3": 2171291,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
+    "catalog_number1": "6209C3",
+    "catalog_number2": "6209",
     "catalog_number3": "NGP895"
   },
   {
@@ -92,10 +92,10 @@
   {
     "supplier": "Boston Gear",
     "script": "boston",
-    "id1": 28943,
+    "id1": 42640,
     "id2": 28944,
     "id3": 28945,
-    "catalog_number1": "OR834",
+    "catalog_number1": "F718-30-B5-G",
     "catalog_number2": "BF9484",
     "catalog_number3": "NGP895"
   },
@@ -112,12 +112,12 @@
   {
     "supplier": "Browning",
     "script": "",
-    "id1": 197886,
-    "id2": 411637,
-    "id3": 411839,
-    "catalog_number1": "OR834",
-    "catalog_number2": "BF9484",
-    "catalog_number3": "NGP895"
+    "id1": 2271739,
+    "id2": 2271796,
+    "id3": 2272120,
+    "catalog_number1": "VF2S-110",
+    "catalog_number2": "VF4S-124",
+    "catalog_number3": "VPE-223"
   },
   {
     "supplier": "Bussmann",
