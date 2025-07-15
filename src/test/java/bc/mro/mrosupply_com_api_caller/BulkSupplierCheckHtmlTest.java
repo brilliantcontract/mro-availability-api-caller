@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import org.junit.Test;
 
 public class BulkSupplierCheckHtmlTest {
+
     @Test
     public void pageContainsControls() throws Exception {
         String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/bulk-supplier-check.html")), StandardCharsets.UTF_8);
@@ -17,5 +18,11 @@ public class BulkSupplierCheckHtmlTest {
         assertThat(html, containsString("id=\"bulkInput\""));
         assertThat(html, containsString("Bulk check"));
         assertThat(html, containsString("Copy available"));
+    }
+
+    @Test
+    public void optionDisabledWhenScriptEmpty() throws Exception {
+        String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/bulk-supplier-check.html")), StandardCharsets.UTF_8);
+        assertThat(html, containsString("o.disabled = true;"));
     }
 }
