@@ -31,4 +31,10 @@ public class IndexHtmlTest {
         assertThat(html, containsString("No script found"));
         assertThat(html, containsString("Not authorized"));
     }
+
+    @Test
+    public void legendNotePresent() throws Exception {
+        String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/index.html")), StandardCharsets.UTF_8);
+        assertThat(html, containsString("Please read following descriptions to understand meaning of different statuses on the report."));
+    }
 }

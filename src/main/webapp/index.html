@@ -48,6 +48,43 @@
 
         <div id="generated-report" class="d-none">
             <h3>System Health Overview: Product Price and Availability Scripts</h3>
+            <p class="mb-2">Please read following descriptions to understand meaning of different statuses on the report.</p>
+
+            <table class="table table-sm" id="legend-table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Badge</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-pill badge-danger">Fail</span></td>
+                        <td>Not defined issue happen.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pill badge-success">Success</span></td>
+                        <td>No errors returned.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pill badge-warning">Overloaded</span></td>
+                        <td>Django overloaded, it refused to execute request.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pill badge-danger">Selenium down</span></td>
+                        <td>Selenium Grid is not available, AOP script cannot run without it.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pill badge-danger">No script found</span></td>
+                        <td>Script name is not found (not registered) in AOP service.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pill badge-warning">Not authorized</span></td>
+                        <td>Authorization failed on Django.</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <div class="d-none" id="processing" style="margin-bottom: 5px">
                 Processing scripts <span id="done">0</span> of <span id="length">0</span>
             </div>
@@ -84,40 +121,6 @@
                 <tbody id="results-body"></tbody>
             </table>
 
-            <table class="table table-sm mt-3" id="legend-table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Badge</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="badge badge-pill badge-danger">Fail</span></td>
-                        <td>Not defined issue happen.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="badge badge-pill badge-success">Success</span></td>
-                        <td>No errors returned.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="badge badge-pill badge-warning">Overloaded</span></td>
-                        <td>Django overloaded, it refused to execute request.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="badge badge-pill badge-danger">Selenium down</span></td>
-                        <td>Selenium Grid is not available, AOP script cannot run without it.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="badge badge-pill badge-danger">No script found</span></td>
-                        <td>Script name is not found (not registered) in AOP service.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="badge badge-pill badge-warning">Not authorized</span></td>
-                        <td>Authorization failed on Django.</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
         <script src="js/cookies-db.js"></script>
