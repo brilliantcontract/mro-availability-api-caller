@@ -29,6 +29,7 @@ public class IndexHtmlTest {
         assertThat(html, containsString("Overloaded"));
         assertThat(html, containsString("Selenium down"));
         assertThat(html, containsString("No script found"));
+        assertThat(html, containsString("Hidden"));
         assertThat(html, containsString("Not authorized"));
     }
 }
