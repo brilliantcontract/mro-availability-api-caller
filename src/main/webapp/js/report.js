@@ -139,8 +139,8 @@
                 });
 
                 let attempts = 0;
-                const maxAttempts = 5;
-
+                const maxAttempts = 3;
+                
                 while (attempts < maxAttempts) {
                     try {
                         const response = await fetch(url, {
@@ -157,7 +157,12 @@
                             return {status: "Fail", data};
                         }
                         if (response.status === 429) {
-                            return {status: "Overloaded", data: null};
+                            attempts++;
+                            if (attempts >= maxAttempts) {
+                                return {status: "Overloaded", data: null};
+                            }
+                            await new Promise((resolve) => setTimeout(resolve, 5000 * attempts));
+                            continue;
                         }
 
                         if (!response.ok) {
@@ -173,7 +178,9 @@
                     }
 
                     attempts++;
-                    await new Promise((resolve) => setTimeout(resolve, 2000));
+                    if (attempts < maxAttempts) {
+                        await new Promise((resolve) => setTimeout(resolve, 2000));
+                    }
                 }
 
                 return {status: "Unsuccessful", data: null};
@@ -188,7 +195,7 @@
                 });
 
                 let attempts = 0;
-                const maxAttempts = 5;
+                const maxAttempts = 3;
 
                 while (attempts < maxAttempts) {
                     try {
@@ -206,7 +213,12 @@
                             return {status: "Fail", data: data};
                         }
                         if (response.status === 429) {
-                            return {status: "Overloaded", data: null};
+                            attempts++;
+                            if (attempts >= maxAttempts) {
+                                return {status: "Overloaded", data: null};
+                            }
+                            await new Promise((resolve) => setTimeout(resolve, 5000 * attempts));
+                            continue;
                         }
 
                         if (!response.ok) {
@@ -223,7 +235,9 @@
                     }
 
                     attempts++;
-                    await new Promise((resolve) => setTimeout(resolve, 2000));
+                    if (attempts < maxAttempts) {
+                        await new Promise((resolve) => setTimeout(resolve, 2000));
+                    }
                 }
 
                 return {status: "Unsuccessful", data: null};
@@ -238,7 +252,7 @@
                 });
 
                 let attempts = 0;
-                const maxAttempts = 5;
+                const maxAttempts = 3;
 
                 while (attempts < maxAttempts) {
                     try {
@@ -253,7 +267,12 @@
                             return {status: "Fail", data: data};
                         }
                         if (response.status === 429) {
-                            return {status: "Overloaded", data: null};
+                            attempts++;
+                            if (attempts >= maxAttempts) {
+                                return {status: "Overloaded", data: null};
+                            }
+                            await new Promise((resolve) => setTimeout(resolve, 5000 * attempts));
+                            continue;
                         }
 
                         if (!response.ok) {
@@ -269,7 +288,9 @@
                     }
 
                     attempts++;
-                    await new Promise((resolve) => setTimeout(resolve, 2000));
+                    if (attempts < maxAttempts) {
+                        await new Promise((resolve) => setTimeout(resolve, 2000));
+                    }
                 }
 
                 return {status: "Unsuccessful", data: null};
