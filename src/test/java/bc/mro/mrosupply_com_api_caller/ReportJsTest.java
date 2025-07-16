@@ -44,6 +44,13 @@ public class ReportJsTest {
     }
 
     @Test
+    public void hiddenStatusUsesSuccessBadge() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("Hidden"));
+        assertThat(js, containsString("badge-success"));
+    }
+
+    @Test
     public void notActiveStatusHandled() throws Exception {
         String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
         assertThat(js, containsString("data.error && data.error.includes('not active')"));
@@ -78,6 +85,6 @@ public class ReportJsTest {
         int end = js.indexOf("async function checkAdminProduct", start);
         String sub = js.substring(start, end);
         assertThat(sub, containsString("data.detail && data.detail.includes('Authentication credentials')"));
-        assertThat(sub, containsString("return {status: \"Not authorized\""));
+        assertThat(sub, containsString("return {status: \"Hidden\""));
     }
 }

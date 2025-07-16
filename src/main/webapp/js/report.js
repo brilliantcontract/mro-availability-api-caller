@@ -8,7 +8,7 @@
                         ? `<span class="badge badge-pill ${result.data.total_qty_available > 0 ? 'badge-info' : 'badge-secondary'} ml-1">${result.data.total_qty_available}</span>`
                         : '';
                 let cls = 'badge badge-pill badge-danger';
-                if (result.status === 'Success') cls = 'badge badge-pill badge-success';
+                if (result.status === 'Success' || result.status === 'Hidden') cls = 'badge badge-pill badge-success';
                 else if (result.status === 'Overloaded' || result.status === 'Not authorized') cls = 'badge badge-pill badge-warning';
                 return `<a href="https://www.mrosupply.com/-/${id}" target="_blank" data-toggle="tooltip" data-placement="top" title="${safeTitle(result.data)}"><span class="${cls}">${result.status}</span>${qtyBadge}</a>`;
             }
@@ -201,7 +201,7 @@
                         if (response.status === 403) {
                             const data = await response.json();
                             if (data && data.detail && data.detail.includes('Authentication credentials')) {
-                                return {status: "Not authorized", data};
+                                return {status: "Hidden", data};
                             }
                             return {status: "Fail", data: data};
                         }
