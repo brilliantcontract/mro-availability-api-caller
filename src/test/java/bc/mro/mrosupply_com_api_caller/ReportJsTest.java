@@ -87,4 +87,11 @@ public class ReportJsTest {
         assertThat(sub, containsString("data.detail && data.detail.includes('Authentication credentials')"));
         assertThat(sub, containsString("return {status: \"Hidden\""));
     }
+
+    @Test
+    public void overloadedRetriesUseIncreasingDelay() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("const maxAttempts = 3"));
+        assertThat(js, containsString("setTimeout(resolve, 5000 * attempts)"));
+    }
 }
