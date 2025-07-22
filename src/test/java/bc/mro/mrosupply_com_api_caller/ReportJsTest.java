@@ -108,4 +108,10 @@ public class ReportJsTest {
         assertThat(js, containsString("const maxAttempts = 3"));
         assertThat(js, containsString("setTimeout(resolve, 5000 * attempts)"));
     }
+
+    @Test
+    public void unsuccessfulStatusRenamedToFailed() throws Exception {
+        String js = new String(Files.readAllBytes(Paths.get("src/main/webapp/js/report.js")), StandardCharsets.UTF_8);
+        assertThat(js, containsString("return {status: \"Failed\""));
+    }
 }

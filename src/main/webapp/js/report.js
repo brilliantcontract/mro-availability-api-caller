@@ -192,7 +192,7 @@
                     }
                 }
 
-                return {status: "Unsuccessful", data: null};
+                return {status: "Failed", data: null};
             }
 
             async function checkLoggedOutProduct(productId, cookiesText) {
@@ -249,7 +249,7 @@
                     }
                 }
 
-                return {status: "Unsuccessful", data: null};
+                return {status: "Failed", data: null};
             }
 
             async function checkAdminProduct(productId, cookiesText) {
@@ -302,7 +302,7 @@
                     }
                 }
 
-                return {status: "Unsuccessful", data: null};
+                return {status: "Failed", data: null};
             }
 
             async function checkAopProduct(script, catalogNumber) {
@@ -353,7 +353,7 @@
                     return {status: "Success", data};
                 } catch (err) {
                     console.warn("AOP request failed", err);
-                    return {status: "Unsuccessful", data: null};
+                    return {status: "Failed", data: null};
                 }
             }
 
