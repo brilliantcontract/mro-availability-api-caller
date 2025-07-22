@@ -38,4 +38,11 @@ public class IndexHtmlTest {
         String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/index.html")), StandardCharsets.UTF_8);
         assertThat(html, containsString("Please read following descriptions to understand meaning of different statuses on the report."));
     }
+
+    @Test
+    public void progressBarPresent() throws Exception {
+        String html = new String(Files.readAllBytes(Paths.get("src/main/webapp/index.html")), StandardCharsets.UTF_8);
+        assertThat(html, containsString("id=\"progress-container\""));
+        assertThat(html, containsString("id=\"progress-bar\""));
+    }
 }

@@ -61,6 +61,8 @@
                 const processingDiv = document.getElementById("processing");
                 const doneCounter = document.getElementById("done");
                 const lengthCounter = document.getElementById("length");
+                const progressBar = document.getElementById("progress-bar");
+                const progressContainer = document.getElementById("progress-container");
                 const resultsTable = document.getElementById("results");
                 const resultsBody = document.getElementById("results-body");
 
@@ -69,6 +71,9 @@
                 lengthCounter.innerText = listings.length;
                 resultsTable.classList.add("d-none");   // hidden until we have rows
                 processingDiv.classList.remove("d-none");
+                progressBar.style.width = "0%";
+                progressBar.setAttribute("aria-valuenow", "0");
+                progressContainer.classList.remove("d-none");
 
                 /* ---------- 4. run checks with limited concurrency ---------- */
                 let counter = 0;
@@ -76,6 +81,9 @@
                 async function processListing(listing) {
                     counter++;
                     doneCounter.innerText = counter;
+                    const percent = Math.round((counter / listings.length) * 100);
+                    progressBar.style.width = percent + "%";
+                    progressBar.setAttribute("aria-valuenow", percent.toString());
 
                     const {supplier, script, id1, id2, id3, catalog_number1, catalog_number2, catalog_number3} = listing;
 
@@ -128,6 +136,7 @@
                 /* ---------- 5. finish ---------- */
                 $("#report-generation-form").addClass("d-none");
                 processingDiv.classList.add("d-none");
+                progressContainer.classList.add("d-none");
             }
 
             async function checkLoggedInProduct(productId, cookiesText) {
@@ -418,6 +427,8 @@ async function generateRegalReport() {
     const processingDiv = document.getElementById("processing");
     const doneCounter = document.getElementById("done");
     const lengthCounter = document.getElementById("length");
+    const progressBar = document.getElementById("progress-bar");
+    const progressContainer = document.getElementById("progress-container");
     const resultsTable = document.getElementById("results");
     const resultsBody = document.getElementById("results-body");
 
@@ -426,12 +437,18 @@ async function generateRegalReport() {
     lengthCounter.innerText = listings.length;
     resultsTable.classList.add("d-none");
     processingDiv.classList.remove("d-none");
+    progressBar.style.width = "0%";
+    progressBar.setAttribute("aria-valuenow", "0");
+    progressContainer.classList.remove("d-none");
 
     let counter = 0;
 
     async function processRegalListing(listing) {
         counter++;
         doneCounter.innerText = counter;
+        const percent = Math.round((counter / listings.length) * 100);
+        progressBar.style.width = percent + "%";
+        progressBar.setAttribute("aria-valuenow", percent.toString());
 
         const { supplier, products } = listing;
         const results = [];
@@ -453,6 +470,7 @@ async function generateRegalReport() {
     }
 
     processingDiv.classList.add("d-none");
+    progressContainer.classList.add("d-none");
 }
 
 function displayLoggedInResult({ supplier, products, results }) {
