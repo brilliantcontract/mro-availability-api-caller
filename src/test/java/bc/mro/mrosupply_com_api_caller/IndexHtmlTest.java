@@ -31,6 +31,10 @@ public class IndexHtmlTest {
         assertThat(html, containsString("No script found"));
         assertThat(html, containsString("Hidden"));
         assertThat(html, containsString("Not authorized"));
+        assertThat(html, containsString("Responsible to Fix"));
+        assertThat(html, containsString("Krya"));
+        assertThat(html, containsString("Dima"));
+        assertThat(html, containsString("Order Processor Manager"));
     }
 
     @Test
